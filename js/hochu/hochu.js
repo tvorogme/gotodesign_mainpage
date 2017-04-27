@@ -1,6 +1,6 @@
 var step = 0;
 var cool_clas = new Object();
-var draw_timeout;
+var draw_interval;
 
 $("#shariki").width($(document).width);
 var c = document.getElementById("shariki");
@@ -35,16 +35,94 @@ function reset_coor() {
 }
 
 function hide_buttons() {
-    $("#but1").css('display', 'none');
-    $("#but2").css('display', 'none');
-    $("#but3").css('display', 'none');
-    $("#but4").css('display', 'none');
-    $("#but5").css('display', 'none');
-    $("#but6").css('display', 'none');
+    $("#but1").css('z-index', '-200');
+    $("#but2").css('z-index', '-200');
+    $("#but3").css('z-index', '-200');
+    $("#but4").css('z-index', '-200');
+    $("#but5").css('z-index', '-200');
+    $("#but6").css('z-index', '-200');
 }
 
-$(document).ready(function () {
+function rad() {
+    function rad1() {
+        function rad2() {
+            function rad3() {
+                function rad4() {
+                    function rad5() {
+                        TweenLite.to(cool_clas, 2, {
+                            r6: 80,
+                            ease: Power4.easeOut
+                        });
+                    }
 
+                    TweenLite.to(cool_clas, 2, {
+                        r5: 68,
+                        x6: $('#but6').position().left + 100, // новости
+                        y6: $('#but6').position().top + 60,
+                        ease: Power4.easeOut,
+                        onCompleteParams: rad5()
+                    });
+                }
+
+                TweenLite.to(cool_clas, 2, {
+                    r4: 90,
+                    x5: $('#but5').position().left + 88, // подробности о проекте
+                    y5: $('#but5').position().top + 57,
+                    ease: Power4.easeOut,
+                    onCompleteParams: rad4()
+                });
+            }
+
+            TweenLite.to(cool_clas, 2, {
+                r3: 120,
+                x4: $('#but4').position().left + 99, // преподавать
+                y4: $('#but4').position().top + 43,
+                ease: Power4.easeOut,
+                onCompleteParams: rad3()
+            });
+        }
+
+        TweenLite.to(cool_clas, 2, {
+            r2: 100,
+            x3: $('#but3').position().left + 138, //принять участие
+            y3: $('#but3').position().top + 110,
+            ease: Power4.easeOut,
+            onCompleteParams: rad2()
+        });
+    }
+
+    TweenLite.to(cool_clas, 2, {
+        r1: 60,
+        x2: $('#but2').position().left + 113, // стать партнёром
+        y2: $('#but2').position().top + 80,
+        ease: Power4.easeOut,
+        onCompleteParams: rad1()
+    });
+}
+
+$("#component-2").click(function () {
+    $("#component-2").toggle();
+    $(".back-hochu").toggle();
+    step = 1;
+    TweenLite.to(cool_clas, 2, {
+        x1: $('#but1').position().left + 90, // подписаться
+        y1: $('#but1').position().top + 50,
+        ease: Power4.easeOut,
+        onCompleteParams: rad()
+    });
+
+    setTimeout(function () {
+        $('#but1').css('z-index', '200');
+        $('#but2').css('z-index', '200');
+        $('#but3').css('z-index', '200');
+        $('#but4').css('z-index', '200');
+        $('#but5').css('z-index', '200');
+        $('#but6').css('z-index', '200');
+    }, 1200);
+});
+
+function start_shari() {
+    hide_buttons();
     top_position = $(".table-shar button").position().top;
     left_position = $(".table-shar button").position().left;
     width = $(".table-shar button").width();
@@ -188,96 +266,8 @@ $(document).ready(function () {
         }, 10);
     }
 
-    draw_timeout = draw();
+    draw_interval = draw();
 
-    function rad() {
-        function rad1() {
-            function rad2() {
-                function rad3() {
-                    function rad4() {
-                        function rad5() {
-                            TweenLite.to(cool_clas, 2, {
-                                r6: 80,
-                                ease: Power4.easeOut
-                            });
-                        }
-
-                        TweenLite.to(cool_clas, 2, {
-                            r5: 68,
-                            x6: $('#but6').position().left + 100, // новости
-                            y6: $('#but6').position().top + 60,
-                            ease: Power4.easeOut,
-                            onCompleteParams: rad5()
-                        });
-                    }
-
-                    TweenLite.to(cool_clas, 2, {
-                        r4: 90,
-                        x5: $('#but5').position().left + 88, // подробности о проекте
-                        y5: $('#but5').position().top + 57,
-                        ease: Power4.easeOut,
-                        onCompleteParams: rad4()
-                    });
-                }
-
-                TweenLite.to(cool_clas, 2, {
-                    r3: 120,
-                    x4: $('#but4').position().left + 99, // преподавать
-                    y4: $('#but4').position().top + 43,
-                    ease: Power4.easeOut,
-                    onCompleteParams: rad3()
-                });
-            }
-
-            TweenLite.to(cool_clas, 2, {
-                r2: 100,
-                x3: $('#but3').position().left + 138, //принять участие
-                y3: $('#but3').position().top + 110,
-                ease: Power4.easeOut,
-                onCompleteParams: rad2()
-            });
-        }
-
-        TweenLite.to(cool_clas, 2, {
-            r1: 60,
-            x2: $('#but2').position().left + 113, // стать партнёром
-            y2: $('#but2').position().top + 80,
-            ease: Power4.easeOut,
-            onCompleteParams: rad1()
-        });
-    }
-
-    $("#component-2").click(function () {
-        $("#component-2").toggle();
-        $(".back-hochu").toggle();
-        step = 1;
-        TweenLite.to(cool_clas, 2, {
-            x1: $('#but1').position().left + 90, // подписаться
-            y1: $('#but1').position().top + 50,
-            ease: Power4.easeOut,
-            onCompleteParams: rad()
-        });
-        setTimeout(function () {
-            $('#but1').css('color', 'black');
-            $('#but1').css('z-index', '200');
-
-            $('#but2').css('color', 'black');
-            $('#but2').css('z-index', '200');
-
-            $('#but3').css('color', 'black');
-            $('#but3').css('z-index', '200');
-
-            $('#but4').css('color', 'black');
-            $('#but4').css('z-index', '200');
-
-            $('#but5').css('color', 'black');
-            $('#but5').css('z-index', '200');
-
-            $('#but6').css('color', 'black');
-            $('#but6').css('z-index', '200');
-        }, 1200)
-
-    });
 
     $('#but1').mouseenter(function () {
         if (locked_f == false) {
@@ -287,7 +277,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but1').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -306,7 +295,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but2').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -325,7 +313,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but3').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -344,7 +331,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but4').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -363,7 +349,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but5').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -382,7 +367,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('#but6').mouseout(function () {
         if (locked_f == false) {
             TweenLite.to(cool_clas, 2, {
@@ -392,8 +376,7 @@ $(document).ready(function () {
         }
     });
 
-
-});
+}
 
 function come_to_us_brother() {
     locked_f = true;
@@ -411,39 +394,25 @@ function come_to_us_brother() {
 
     setTimeout(function () {
         step = 2;
-
+        hide_buttons();
         locked_f = false;
 
         $('#come_to_us_brother').toggle();
     }, 1000);
 }
 
-
 $(".back-hochu").click(function () {
     if (step == 1) {
+        $("#component-2").toggle();
+        step = 0;
+
+        reset_coor();
+
+        window.clearInterval(draw_interval);
+        draw_interval = null;
         $(".back-hochu").toggle();
-        hide_buttons();
 
-        TweenLite.to(cool_clas, 2, {
-            line_helper: 0,
-            r4: 0,
-            r5: 0,
-            r6: 0,
-            r3: 0,
-            r2: 0,
-            r1: 0,
-            ease: Power4.easeOut
-        });
-
-        setTimeout(function () {
-            step = 0;
-            $("#component-2").toggle();
-
-            reset_coor();
-
-            cool_clas["line_helper"] = 4;
-        }, 1000);
-
+        start_shari();
     }
 });
 
@@ -499,6 +468,16 @@ $('.input').keypress(function (e) {
             $(".subscription_alert").toggle();
             $("#want").toggle();
             reset_coor();
+
+            window.clearInterval(draw_interval);
+            draw_interval = null;
+            $(".back-hochu").toggle();
+
+            start_shari();
         }, 1000);
     }
+});
+
+$(document).ready(function () {
+    start_shari();
 });
