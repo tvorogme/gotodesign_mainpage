@@ -34,6 +34,7 @@ var ctx = c.getContext("2d");
 var locker = false;
 
 function reset_coor() {
+    cool_clas["line_helper"] = 0;
     cool_clas["x1"] = left_position + width / 2;
     cool_clas["y1"] = top_position + height / 2;
     cool_clas["r1"] = 130;
@@ -68,6 +69,73 @@ function hide_buttons() {
     $("#but4").css('z-index', '-200');
     $("#but5").css('z-index', '-200');
     $("#but6").css('z-index', '-200');
+}
+
+function display_buttons() {
+    $('#but1').css('z-index', '200');
+    $('#but2').css('z-index', '200');
+    $('#but3').css('z-index', '200');
+    $('#but4').css('z-index', '200');
+    $('#but5').css('z-index', '200');
+    $('#but6').css('z-index', '200');
+}
+
+function reset_radius() {
+    TweenLite.to(cool_clas, 2, {
+        r1: 60,
+        ease: Power4.easeOut
+    });
+    TweenLite.to(cool_clas, 2, {
+        r2: 100,
+        ease: Power4.easeOut
+    });
+    TweenLite.to(cool_clas, 2, {
+        r3: 120,
+        ease: Power4.easeOut
+    });
+    TweenLite.to(cool_clas, 2, {
+        r4: 90,
+        ease: Power4.easeOut
+    });
+    TweenLite.to(cool_clas, 2, {
+        r5: 68,
+        ease: Power4.easeOut
+    });
+    TweenLite.to(cool_clas, 2, {
+        r6: 80,
+        ease: Power4.easeOut
+    });
+
+    TweenLite.to(cool_clas, 2, {
+        line_helper: 4,
+        ease: Power4.easeOut
+    });
+
+}
+
+function hide_radius(r3) {
+    if (r3) {
+        TweenLite.to(cool_clas, 2, {
+            line_helper: 0,
+            r4: 0,
+            r5: 0,
+            r6: 0,
+            r2: 0,
+            r1: 0,
+            ease: Power4.easeOut
+        });
+    } else {
+        TweenLite.to(cool_clas, 2, {
+            line_helper: 0,
+            r4: 0,
+            r5: 0,
+            r6: 0,
+            r3: 0,
+            r2: 0,
+            r1: 0,
+            ease: Power4.easeOut
+        });
+    }
 }
 
 function rad() {
@@ -140,12 +208,7 @@ $("#component-2").click(function () {
     });
 
     setTimeout(function () {
-        $('#but1').css('z-index', '200');
-        $('#but2').css('z-index', '200');
-        $('#but3').css('z-index', '200');
-        $('#but4').css('z-index', '200');
-        $('#but5').css('z-index', '200');
-        $('#but6').css('z-index', '200');
+        display_buttons();
     }, 1200);
 });
 
@@ -178,7 +241,6 @@ function start_shari() {
                 ctx.closePath();
             } else if (step == 1) {
                 ctx.lineWidth = cool_clas["line_helper"];
-
                 ctx.beginPath();
                 ctx.moveTo(cool_clas["x4"], cool_clas["y4"]);
                 ctx.lineTo(cool_clas["x5"], cool_clas["y5"]);
@@ -210,8 +272,6 @@ function start_shari() {
                 ctx.strokeStyle = 'rgba(97,97,97,0.5)';
                 ctx.stroke();
 
-
-                ctx.lineWidth = 4;
 
                 ctx.beginPath();
                 ctx.arc(cool_clas["x4"], cool_clas["y4"], cool_clas["r4"], 0, 2 * Math.PI, false);
@@ -261,8 +321,9 @@ function start_shari() {
                 ctx.stroke();
                 ctx.closePath();
             } else if (step == 2) {
+                ctx.lineWidth = cool_clas["line_helper"];
             } else if (step == 3) {
-
+                ctx.lineWidth = cool_clas["line_helper"];
                 ctx.beginPath();
                 ctx.arc($('#but3').position().left + 138, $('#but3').position().top + 110, cool_clas["r3"], 0, 2 * Math.PI, false);
                 ctx.fillStyle = 'rgb(255, 140, 102)';
@@ -272,6 +333,7 @@ function start_shari() {
                 ctx.closePath();
 
             } else if (step == 4) {
+                ctx.lineWidth = cool_clas["line_helper"];
 
                 $('.take_part_in').each(function () {
                     ctx.beginPath();
@@ -408,17 +470,7 @@ function start_shari() {
 
 function come_to_us_brother() {
     locked_f = true;
-
-    TweenLite.to(cool_clas, 2, {
-        line_helper: 0,
-        r4: 0,
-        r3: 0,
-        r5: 0,
-        r6: 0,
-        r2: 0,
-        r1: 0,
-        ease: Power4.easeOut
-    });
+    hide_radius(false);
 
     setTimeout(function () {
         step = 2;
@@ -430,17 +482,74 @@ function come_to_us_brother() {
 }
 
 $(".back-hochu").click(function () {
+    cool_clas['line_helper'] = 0;
     if (step == 1) {
-        $("#component-2").toggle();
-        step = 0;
+        TweenLite.to(cool_clas, 2, {
+            ease: Power4.easeOut,
+            x1: left_position + width / 2,
+            y1: top_position + height / 2,
+            r1: 130,
 
-        reset_coor();
+            x2: left_position + width / 2,
+            y2: top_position + height / 2,
+            r2: 130,
 
-        window.clearInterval(draw_interval);
-        draw_interval = null;
-        $(".back-hochu").toggle();
+            x3: left_position + width / 2,
+            y3: top_position + height / 2,
+            r3: 130,
 
-        start_shari();
+
+            x4: left_position + width / 2,
+            y4: top_position + height / 2,
+            r4: 130,
+
+            x5: left_position + width / 2,
+            y5: top_position + height / 2,
+            r5: 130,
+
+
+            x6: left_position + width / 2,
+            y6: top_position + height / 2,
+            r6: 130
+        });
+
+        setTimeout(function () {
+            $("#component-2").toggle();
+            step = 0;
+
+
+            window.clearInterval(draw_interval);
+            draw_interval = null;
+            $(".back-hochu").toggle();
+
+            start_shari();
+        }, 1200);
+
+    }
+
+    else if (step == 2) {
+        $('#come_to_us_brother').toggle();
+        step = 1;
+        display_buttons();
+        reset_radius();
+    }
+
+    else if (step == 4) {
+        console.log(cool_clas['line_helper']);
+        $('#but3').animate({
+            top: cool_clas['old_x'],
+            left: cool_clas['old_y']
+        }, 1000);
+
+        setTimeout(function () {
+            $('#take-part').toggle();
+            step = 1;
+            reset_radius();
+            display_buttons();
+            lock_click = false;
+        }, 1000);
+
+
     }
 });
 
@@ -448,20 +557,20 @@ function take_part() {
     if (lock_click == false) {
         locked_f = true;
 
-        TweenLite.to(cool_clas, 2, {
-            line_helper: 0,
-            r4: 0,
-            r5: 0,
-            r6: 0,
-            r2: 0,
-            r1: 0,
-            ease: Power4.easeOut
-        });
+        cool_clas['old_y'] = $('#but3').position().left;
+        cool_clas['old_x'] = $('#but3').position().top;
 
+        hide_radius(true);
         setTimeout(function () {
-            step = 3;
             hide_buttons();
+            $('#but3').css('z-index', '200');
+
             locked_f = false;
+
+            TweenLite.to(cool_clas, 2, {
+                line_helper: 4,
+                ease: Power4.easeOut
+            });
 
             $('#but3').animate({
                 top: $('.take_part_in').position().top + 200,
