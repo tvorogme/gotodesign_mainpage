@@ -535,7 +535,11 @@ $(".back-hochu").click(function () {
     }
 
     else if (step == 4) {
-        console.log(cool_clas['line_helper']);
+        TweenLite.to(cool_clas, 2, {
+            ease: Power4.easeOut,
+            line_helper: 0
+        });
+
         $('#but3').animate({
             top: cool_clas['old_x'],
             left: cool_clas['old_y']
@@ -572,8 +576,10 @@ function take_part() {
                 ease: Power4.easeOut
             });
 
+            console.log($('#middle_shar').position().top + 200);
+
             $('#but3').animate({
-                top: $('.take_part_in').position().top + 200,
+                top: $('#middle_shar').position().top + 200,
                 left: "20vw"
             }, 1000);
 
