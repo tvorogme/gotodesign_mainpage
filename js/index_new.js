@@ -115,6 +115,13 @@ function get_slide(n) {
             console.log('fourth slide');
             lock = true;
 
+            setTimeout(function () {
+                if (!locker) {
+                    $("#component-2").click();
+                }
+            }, 5000);
+
+
             if ($('#partners').position().top != 0) {
                 $('.krutyashki').animate({
                     top: '-100vh'
@@ -278,8 +285,8 @@ function awesome() {
 
 
 setTimeout(function () {
-    if (slide == 0){
+    if (slide == 0) {
         get_slide(1);
         next_down();
     }
-},  2000);
+}, 2000);

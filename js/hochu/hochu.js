@@ -1,10 +1,37 @@
 var step = 0;
 var cool_clas = new Object();
 var draw_interval;
+cool_clas['main_r'] = 130;
+
+$('#component-2').mouseenter(function () {
+    if (locked_f == false) {
+        TweenLite.to(cool_clas, 2, {
+            main_r: 150,
+            ease: Power4.easeOut
+        });
+    }
+});
+$('#want').mouseenter(function () {
+    if (locked_f == false) {
+        TweenLite.to(cool_clas, 2, {
+            main_r: 150,
+            ease: Power4.easeOut
+        });
+    }
+});
+$('#component-2').mouseout(function () {
+    if (locked_f == false) {
+        TweenLite.to(cool_clas, 2, {
+            main_r: 130,
+            ease: Power4.easeOut
+        });
+    }
+});
 
 $("#shariki").width($(document).width);
 var c = document.getElementById("shariki");
 var ctx = c.getContext("2d");
+var locker = false;
 
 function reset_coor() {
     cool_clas["x1"] = left_position + width / 2;
@@ -101,6 +128,7 @@ function rad() {
 }
 
 $("#component-2").click(function () {
+    locker = true;
     $("#component-2").toggle();
     $(".back-hochu").toggle();
     step = 1;
@@ -144,7 +172,7 @@ function start_shari() {
             ctx.clearRect(0, 0, c.width, c.height);
             if (step == 0) {
                 ctx.beginPath();
-                ctx.arc(left_position + width / 2, top_position + height / 2, 130, 0, 2 * Math.PI, false);
+                ctx.arc(left_position + width / 2, top_position + height / 2, cool_clas['main_r'], 0, 2 * Math.PI, false);
                 ctx.strokeStyle = '#080808';
                 ctx.stroke();
                 ctx.closePath();
