@@ -1,7 +1,6 @@
 var step = 0;
 var cool_clas = new Object();
-var l = 138;
-var ll = 110;
+var draw_timeout;
 
 $("#shariki").width($(document).width);
 var c = document.getElementById("shariki");
@@ -33,6 +32,15 @@ function reset_coor() {
     cool_clas["x6"] = left_position + width / 2;
     cool_clas["y6"] = top_position + height / 2;
     cool_clas["r6"] = 130;
+}
+
+function hide_buttons() {
+    $("#but1").css('display', 'none');
+    $("#but2").css('display', 'none');
+    $("#but3").css('display', 'none');
+    $("#but4").css('display', 'none');
+    $("#but5").css('display', 'none');
+    $("#but6").css('display', 'none');
 }
 
 $(document).ready(function () {
@@ -180,7 +188,7 @@ $(document).ready(function () {
         }, 10);
     }
 
-    draw();
+    draw_timeout = draw();
 
     function rad() {
         function rad1() {
@@ -403,12 +411,7 @@ function come_to_us_brother() {
 
     setTimeout(function () {
         step = 2;
-        $("#but1").css('display', 'none');
-        $("#but2").css('display', 'none');
-        $("#but3").css('display', 'none');
-        $("#but4").css('display', 'none');
-        $("#but5").css('display', 'none');
-        $("#but6").css('display', 'none');
+
         locked_f = false;
 
         $('#come_to_us_brother').toggle();
@@ -419,12 +422,7 @@ function come_to_us_brother() {
 $(".back-hochu").click(function () {
     if (step == 1) {
         $(".back-hochu").toggle();
-        $("#but1").css('display', 'none');
-        $("#but2").css('display', 'none');
-        $("#but3").css('display', 'none');
-        $("#but4").css('display', 'none');
-        $("#but5").css('display', 'none');
-        $("#but6").css('display', 'none');
+        hide_buttons();
 
         TweenLite.to(cool_clas, 2, {
             line_helper: 0,
@@ -465,11 +463,7 @@ function take_part() {
 
         setTimeout(function () {
             step = 3;
-            $("#but1").css('display', 'none');
-            $("#but2").css('display', 'none');
-            $("#but4").css('display', 'none');
-            $("#but5").css('display', 'none');
-            $("#but6").css('display', 'none');
+            hide_buttons();
             locked_f = false;
 
             $('#but3').animate({
