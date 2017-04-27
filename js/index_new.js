@@ -276,9 +276,6 @@ function awesome() {
     $('.bio-text').css('display', 'none');
 }
 
-function refresh() {
-    window.location = window.location;
-}
 
 setTimeout(function () {
     if (slide == 0){

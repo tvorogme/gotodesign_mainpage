@@ -20,6 +20,7 @@ table {
 }
 
 .flip-container {
+    min-height: 320px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -53,8 +54,15 @@ body {
 
 .krutyashki {
     position: relative;
+    width: 100vw;
+    height: 100vh;
     top: calc(100vh + 30px);
     z-index: 999;
+}
+
+#krutyashki-wrapper {
+    width: 100vw;
+    height: 100vh;
 }
 
 .flip-container {
@@ -66,8 +74,7 @@ body {
 }
 
 .front, .back {
-    height: calc(50vh - 30px);
-    min-height: 200px;
+    min-height: 300px;
     width: 100%;
 }
 
@@ -142,7 +149,7 @@ body {
 .programm-back table,
 .robot-back table {
     width: 100%;
-    height: 100%;
+    height: 300px;
 }
 
 .ad h3,
@@ -154,28 +161,28 @@ body {
 }
 
 .programm-back {
-    background-image: url(/static/img/napravleniya/programm.jpg);
+    background-image: url(../img/napravleniya/programm.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
 }
 
 .robot-back {
-    background-image: url(/static/img/napravleniya/robo.jpg);
+    background-image: url(../img/napravleniya/robo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
 }
 
 .bio-back {
-    background-image: url(/static/img/napravleniya/bio.jpg);
+    background-image: url(../img/napravleniya/bio.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
 }
 
 .ad-back {
-    background-image: url(/static/img/napravleniya/ad.jpg);
+    background-image: url(../img/napravleniya/ad.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
@@ -730,6 +737,11 @@ body {
     background: #ffb7b7; /* Firefox */
 }
 
+.need_for_obertka {
+    width: 100vw;
+    height: 100vh;
+}
+
 .shariki {
     height: 100vh;
     width: 100vw;
@@ -1023,10 +1035,10 @@ a, button {
     cursor: pointer;
 }
 
-.back-hochu img{
+.back-hochu img {
     height: 50px;
 }
 
-.button-big-picture{
+.button-big-picture {
     letter-spacing: 1px !important;
 }

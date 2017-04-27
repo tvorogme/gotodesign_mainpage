@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hi!</title>
 </head>
-<body onResize="refresh()">
+<body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400" rel="stylesheet">
 <link rel="stylesheet" href="css/index_new.css">
@@ -16,8 +17,11 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="js/menu/modernizr.custom.js"></script>
 <script src="js/mo.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
 <nav id="bt-menu" class="bt-menu">
     <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
@@ -63,127 +67,158 @@
 
 <!-- Весёлые покрутяшки -->
 <div class="krutyashki">
-    <div class="container">
-        <div class="row crugleski">
-            <div class="opisanie">
-                <a onclick="awesome()">
-                    <svg width="64" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 64 64"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
-                        <g>
-                            <path
-                                    d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/>
-                        </g>
-                    </svg>
-                </a>
-                <table>
-                    <td valign="middle">
-                        <p class="programm-text">В начинающей группе запланирован базовый курс из лекций и воркшопов,
-                            сопровождающихся заданиями из различных областей, в рамках которых ребята сделают 5-6
-                            мини-проектов.<br>
-                            Участники, попавшие в старшую группу по результатам тестирования, все время посвятят
-                            реализации основного проекта в командах. Их ждут как технологические мастер-классы, так и
-                            семинары по организации работы в проекте, формированию тз и исследованию требований от
-                            пользователей, тестированию, а также ежедневная работа под руководством куратора и общение с
-                            опытными разработчиками.
-                        </p>
+    <table id="krutyashki-wrapper">
+        <tbody>
+        <tr>
+            <td valign="middle">
+                <div class="container">
+                    <div class="row crugleski">
+                        <div class="opisanie">
+                            <a onclick="awesome()">
+                                <svg width="64" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64"
+                                     viewBox="0 0 64 64"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">
+                                    <g>
+                                        <path
+                                                d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59   c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59   c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0   L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                            <table>
+                                <td valign="middle">
+                                    <p class="programm-text">В начинающей группе запланирован базовый курс из лекций и
+                                        воркшопов,
+                                        сопровождающихся заданиями из различных областей, в рамках которых ребята
+                                        сделают 5-6
+                                        мини-проектов.<br>
+                                        Участники, попавшие в старшую группу по результатам тестирования, все время
+                                        посвятят
+                                        реализации основного проекта в командах. Их ждут как технологические
+                                        мастер-классы, так и
+                                        семинары по организации работы в проекте, формированию тз и исследованию
+                                        требований от
+                                        пользователей, тестированию, а также ежедневная работа под руководством куратора
+                                        и общение с
+                                        опытными разработчиками.
+                                    </p>
 
-                        <p class="robot-text">
-                            Участники направления будут разделены на 2 группы: Опытные ребята возьмутся сразу за проекты
-                            – пройдут все стадии от идеи до реализации. Второй поток специально предназначен для
-                            новичков, которые получат базовые навыки и инструментарий: познакомятся с платформой Arduino
-                            и средой разработки; научатся работать с различными датчиками, микросхемами, сервомоторами и
-                            объединять это все, чтобы получить умные устройства.
-                            <br>
-                            Каждый участник направления получит к концу школы результат в виде прототипа или
-                            законченного устройства, а также пройдет серию мастер-классов по проектной работе,
-                            промдизайну и 3д-печати, интернету вещей.
-                        </p>
+                                    <p class="robot-text">
+                                        Участники направления будут разделены на 2 группы: Опытные ребята возьмутся
+                                        сразу за проекты
+                                        – пройдут все стадии от идеи до реализации. Второй поток специально предназначен
+                                        для
+                                        новичков, которые получат базовые навыки и инструментарий: познакомятся с
+                                        платформой Arduino
+                                        и средой разработки; научатся работать с различными датчиками, микросхемами,
+                                        сервомоторами и
+                                        объединять это все, чтобы получить умные устройства.
+                                        <br>
+                                        Каждый участник направления получит к концу школы результат в виде прототипа или
+                                        законченного устройства, а также пройдет серию мастер-классов по проектной
+                                        работе,
+                                        промдизайну и 3д-печати, интернету вещей.
+                                    </p>
 
-                        <p class="ad-text">
-                            Небольшая группа участников с опытом в прикладном программировании займется изучением одной
-                            из самых актуальных тем – анализ данных и машинное обучение. Ребята реализуют
-                            исследовательские проекты и познакомятся с Big Data, Machine Learning и SNA, освоят основные
-                            инструментарии и разберутся с математикой и статистикой, которые стоят за основными методами
-                            в этих областях.<br>
-                            В рамках направления для всех желающих будет проведена подготовка к нашим хакатонам и
-                            Олимпиаде НТИ по большим данным и машинному обучению.
+                                    <p class="ad-text">
+                                        Небольшая группа участников с опытом в прикладном программировании займется
+                                        изучением одной
+                                        из самых актуальных тем – анализ данных и машинное обучение. Ребята реализуют
+                                        исследовательские проекты и познакомятся с Big Data, Machine Learning и SNA,
+                                        освоят основные
+                                        инструментарии и разберутся с математикой и статистикой, которые стоят за
+                                        основными методами
+                                        в этих областях.<br>
+                                        В рамках направления для всех желающих будет проведена подготовка к нашим
+                                        хакатонам и
+                                        Олимпиаде НТИ по большим данным и машинному обучению.
 
-                        </p>
+                                    </p>
 
-                        <p class="bio-text">
-                            Биоинформатика - это стремительно развивающаяся область, точка смешения биологии, медицины,
-                            информатики и математики, целью которой является выявление новых биологических
-                            закономерностей алгоритмическими и статистическими методами. С развитием технологий
-                            появилась возможность исследовать весь геном организма в целом, определять уровни активности
-                            генов, исследовать их более сложные взаимодействия.
-                            <br>
-                            Участники узнают об основных задачах биоинформатики, получат опыт работы с реальными
-                            данными, рассмотрят примеры современных исследований. К участию приглашаются все, кто хочет
-                            познакомиться с новой областью и попробовать силы в решении нестандартных междисциплинарных
-                            задач. Знание биологии не является обязательным в отличие от базового знания Python/R.
-                        </p>
-                    </td>
-                </table>
-            </div>
-            <div onclick="cool(0)" class="up flip-container col-md-6">
-                <div class="flipper">
-                    <div class="front robot">
-                        <table>
-                            <td valign="middle"><h3>Робототехника</h3></td>
-                        </table>
-                    </div>
-                    <div class="back robot-back">
-                        <table>
-                            <img src="img/arrow.png">
-                        </table>
+                                    <p class="bio-text">
+                                        Биоинформатика - это стремительно развивающаяся область, точка смешения
+                                        биологии, медицины,
+                                        информатики и математики, целью которой является выявление новых биологических
+                                        закономерностей алгоритмическими и статистическими методами. С развитием
+                                        технологий
+                                        появилась возможность исследовать весь геном организма в целом, определять
+                                        уровни активности
+                                        генов, исследовать их более сложные взаимодействия.
+                                        <br>
+                                        Участники узнают об основных задачах биоинформатики, получат опыт работы с
+                                        реальными
+                                        данными, рассмотрят примеры современных исследований. К участию приглашаются
+                                        все, кто хочет
+                                        познакомиться с новой областью и попробовать силы в решении нестандартных
+                                        междисциплинарных
+                                        задач. Знание биологии не является обязательным в отличие от базового знания
+                                        Python/R.
+                                    </p>
+                                </td>
+                            </table>
+                        </div>
+                        <div onclick="cool(0)" class="up flip-container col-md-6">
+                            <div class="flipper">
+                                <div class="front robot">
+                                    <table>
+                                        <td valign="middle"><h3>Робототехника</h3></td>
+                                    </table>
+                                </div>
+                                <div class="back robot-back">
+                                    <table>
+                                        <img src="img/arrow.png">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="cool(1)" class="up flip-container vertical col-md-6">
+                            <div class="flipper">
+                                <div class="front programm">
+                                    <table>
+                                        <td valign="middle"><h3>Прикладное программирование</h3></td>
+                                    </table>
+                                </div>
+                                <div class="back programm-back">
+                                    <table>
+                                        <img src="img/arrow.png">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="ntcool(2)" class="down flip-container vertical col-md-6">
+                            <div class="flipper">
+                                <div class="front ad">
+                                    <table>
+                                        <td valign="middle"><h3>Анализ данных</h3></td>
+                                    </table>
+                                </div>
+                                <div class="back ad-back">
+                                    <table>
+                                        <img src="img/arrow.png">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div onclick="ntcool(3)" class="down flip-container col-md-6">
+                            <div class="flipper">
+                                <div class="front bio">
+                                    <table>
+                                        <td valign="middle"><h3>Биоинформатика</h3></td>
+                                    </table>
+                                </div>
+                                <div class="back bio-back">
+                                    <table>
+                                        <img src="img/arrow.png">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div onclick="cool(1)" class="up flip-container vertical col-md-6">
-                <div class="flipper">
-                    <div class="front programm">
-                        <table>
-                            <td valign="middle"><h3>Прикладное программирование</h3></td>
-                        </table>
-                    </div>
-                    <div class="back programm-back">
-                        <table>
-                            <img src="img/arrow.png">
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div onclick="ntcool(2)" class="down flip-container vertical col-md-6">
-                <div class="flipper">
-                    <div class="front ad">
-                        <table>
-                            <td valign="middle"><h3>Анализ данных</h3></td>
-                        </table>
-                    </div>
-                    <div class="back ad-back">
-                        <table>
-                            <img src="img/arrow.png">
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div onclick="ntcool(3)" class="down flip-container col-md-6">
-                <div class="flipper">
-                    <div class="front bio">
-                        <table>
-                            <td valign="middle"><h3>Биоинформатика</h3></td>
-                        </table>
-                    </div>
-                    <div class="back bio-back">
-                        <table>
-                            <img src="img/arrow.png">
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <div class="button-big-picture">

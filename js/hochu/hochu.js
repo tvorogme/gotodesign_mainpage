@@ -7,6 +7,34 @@ $("#shariki").width($(document).width);
 var c = document.getElementById("shariki");
 var ctx = c.getContext("2d");
 
+function reset_coor() {
+    cool_clas["x1"] = left_position + width / 2;
+    cool_clas["y1"] = top_position + height / 2;
+    cool_clas["r1"] = 130;
+
+    cool_clas["x2"] = left_position + width / 2;
+    cool_clas["y2"] = top_position + height / 2;
+    cool_clas["r2"] = 130;
+
+    cool_clas["x3"] = left_position + width / 2;
+    cool_clas["y3"] = top_position + height / 2;
+    cool_clas["r3"] = 130;
+
+
+    cool_clas["x4"] = left_position + width / 2;
+    cool_clas["y4"] = top_position + height / 2;
+    cool_clas["r4"] = 130;
+
+    cool_clas["x5"] = left_position + width / 2;
+    cool_clas["y5"] = top_position + height / 2;
+    cool_clas["r5"] = 130;
+
+
+    cool_clas["x6"] = left_position + width / 2;
+    cool_clas["y6"] = top_position + height / 2;
+    cool_clas["r6"] = 130;
+}
+
 $(document).ready(function () {
 
     top_position = $(".table-shar button").position().top;
@@ -17,31 +45,7 @@ $(document).ready(function () {
     locked_f = false;
     lock_click = false;
 
-    cool_clas["x1"] = left_position + width / 2 + 98;
-    cool_clas["y1"] = top_position + height / 2 + 98;
-    cool_clas["r1"] = 130;
-
-    cool_clas["x2"] = left_position + width / 2 + 98;
-    cool_clas["y2"] = top_position + height / 2 + 98;
-    cool_clas["r2"] = 130;
-
-    cool_clas["x3"] = left_position + width / 2 + 98;
-    cool_clas["y3"] = top_position + height / 2 + 98;
-    cool_clas["r3"] = 130;
-
-
-    cool_clas["x4"] = left_position + width / 2 + 98;
-    cool_clas["y4"] = top_position + height / 2 + 98;
-    cool_clas["r4"] = 130;
-
-    cool_clas["x5"] = left_position + width / 2 + 98;
-    cool_clas["y5"] = top_position + height / 2 + 98;
-    cool_clas["r5"] = 130;
-
-
-    cool_clas["x6"] = left_position + width / 2 + 98;
-    cool_clas["y6"] = top_position + height / 2 + 98;
-    cool_clas["r6"] = 130;
+    reset_coor();
 
     cool_clas["line_helper"] = 4;
     c.width = window.innerWidth;     // equals window dimension
@@ -54,7 +58,7 @@ $(document).ready(function () {
             ctx.clearRect(0, 0, c.width, c.height);
             if (step == 0) {
                 ctx.beginPath();
-                ctx.arc(left_position + width / 2 + 98, top_position + height / 2 + 98, 130, 0, 2 * Math.PI, false);
+                ctx.arc(left_position + width / 2, top_position + height / 2, 130, 0, 2 * Math.PI, false);
                 ctx.strokeStyle = '#080808';
                 ctx.stroke();
                 ctx.closePath();
@@ -437,31 +441,7 @@ $(".back-hochu").click(function () {
             step = 0;
             $("#component-2").toggle();
 
-            cool_clas["x1"] = left_position + width / 2 + 98;
-            cool_clas["y1"] = top_position + height / 2 + 98;
-            cool_clas["r1"] = 130;
-
-            cool_clas["x2"] = left_position + width / 2 + 98;
-            cool_clas["y2"] = top_position + height / 2 + 98;
-            cool_clas["r2"] = 130;
-
-            cool_clas["x3"] = left_position + width / 2 + 98;
-            cool_clas["y3"] = top_position + height / 2 + 98;
-            cool_clas["r3"] = 130;
-
-
-            cool_clas["x4"] = left_position + width / 2 + 98;
-            cool_clas["y4"] = top_position + height / 2 + 98;
-            cool_clas["r4"] = 130;
-
-            cool_clas["x5"] = left_position + width / 2 + 98;
-            cool_clas["y5"] = top_position + height / 2 + 98;
-            cool_clas["r5"] = 130;
-
-
-            cool_clas["x6"] = left_position + width / 2 + 98;
-            cool_clas["y6"] = top_position + height / 2 + 98;
-            cool_clas["r6"] = 130;
+            reset_coor();
 
             cool_clas["line_helper"] = 4;
         }, 1000);
@@ -516,31 +496,7 @@ $('.input').keypress(function (e) {
         $(".subscription_alert").toggle();
 
 
-        cool_clas["x1"] = left_position + width / 2 + 98;
-        cool_clas["y1"] = top_position + height / 2 + 98;
-        cool_clas["r1"] = 130;
-
-        cool_clas["x2"] = left_position + width / 2 + 98;
-        cool_clas["y2"] = top_position + height / 2 + 98;
-        cool_clas["r2"] = 130;
-
-        cool_clas["x3"] = left_position + width / 2 + 98;
-        cool_clas["y3"] = top_position + height / 2 + 98;
-        cool_clas["r3"] = 130;
-
-
-        cool_clas["x4"] = left_position + width / 2 + 98;
-        cool_clas["y4"] = top_position + height / 2 + 98;
-        cool_clas["r4"] = 130;
-
-        cool_clas["x5"] = left_position + width / 2 + 98;
-        cool_clas["y5"] = top_position + height / 2 + 98;
-        cool_clas["r5"] = 130;
-
-
-        cool_clas["x6"] = left_position + width / 2 + 98;
-        cool_clas["y6"] = top_position + height / 2 + 98;
-        cool_clas["r6"] = 130;
+        reset_coor();
 
         cool_clas["line_helper"] = 4;
 
@@ -548,32 +504,7 @@ $('.input').keypress(function (e) {
         setTimeout(function () {
             $(".subscription_alert").toggle();
             $("#want").toggle();
-
-            cool_clas["x1"] = left_position + width / 2 + 98;
-            cool_clas["y1"] = top_position + height / 2 + 98;
-            cool_clas["r1"] = 130;
-
-            cool_clas["x2"] = left_position + width / 2 + 98;
-            cool_clas["y2"] = top_position + height / 2 + 98;
-            cool_clas["r2"] = 130;
-
-            cool_clas["x3"] = left_position + width / 2 + 98;
-            cool_clas["y3"] = top_position + height / 2 + 98;
-            cool_clas["r3"] = 130;
-
-
-            cool_clas["x4"] = left_position + width / 2 + 98;
-            cool_clas["y4"] = top_position + height / 2 + 98;
-            cool_clas["r4"] = 130;
-
-            cool_clas["x5"] = left_position + width / 2 + 98;
-            cool_clas["y5"] = top_position + height / 2 + 98;
-            cool_clas["r5"] = 130;
-
-
-            cool_clas["x6"] = left_position + width / 2 + 98;
-            cool_clas["y6"] = top_position + height / 2 + 98;
-            cool_clas["r6"] = 130;
+            reset_coor();
         }, 1000);
     }
 });
