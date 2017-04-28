@@ -481,79 +481,85 @@ function come_to_us_brother() {
     }, 1000);
 }
 
+var bask_locker = false;
+
 $(".back-hochu").click(function () {
-    cool_clas['line_helper'] = 0;
-    if (step == 1) {
-        TweenLite.to(cool_clas, 2, {
-            ease: Power4.easeOut,
-            x1: left_position + width / 2,
-            y1: top_position + height / 2,
-            r1: 130,
+    if (!bask_locker) {
+        bask_locker = true;
+        cool_clas['line_helper'] = 0;
+        if (step == 1) {
+            TweenLite.to(cool_clas, 2, {
+                ease: Power4.easeOut,
+                x1: left_position + width / 2,
+                y1: top_position + height / 2,
+                r1: 130,
 
-            x2: left_position + width / 2,
-            y2: top_position + height / 2,
-            r2: 130,
+                x2: left_position + width / 2,
+                y2: top_position + height / 2,
+                r2: 130,
 
-            x3: left_position + width / 2,
-            y3: top_position + height / 2,
-            r3: 130,
-
-
-            x4: left_position + width / 2,
-            y4: top_position + height / 2,
-            r4: 130,
-
-            x5: left_position + width / 2,
-            y5: top_position + height / 2,
-            r5: 130,
+                x3: left_position + width / 2,
+                y3: top_position + height / 2,
+                r3: 130,
 
 
-            x6: left_position + width / 2,
-            y6: top_position + height / 2,
-            r6: 130
-        });
+                x4: left_position + width / 2,
+                y4: top_position + height / 2,
+                r4: 130,
 
-        setTimeout(function () {
-            $("#component-2").toggle();
-            step = 0;
+                x5: left_position + width / 2,
+                y5: top_position + height / 2,
+                r5: 130,
 
 
-            window.clearInterval(draw_interval);
-            draw_interval = null;
-            $(".back-hochu").toggle();
+                x6: left_position + width / 2,
+                y6: top_position + height / 2,
+                r6: 130
+            });
 
-            start_shari();
-        }, 1200);
+            setTimeout(function () {
+                $("#component-2").toggle();
+                step = 0;
 
-    }
 
-    else if (step == 2) {
-        $('#come_to_us_brother').toggle();
-        step = 1;
-        display_buttons();
-        reset_radius();
-    }
+                window.clearInterval(draw_interval);
+                draw_interval = null;
+                $(".back-hochu").toggle();
 
-    else if (step == 4) {
-        TweenLite.to(cool_clas, 2, {
-            ease: Power4.easeOut,
-            line_helper: 0
-        });
+                start_shari();
+                bask_locker = false;
+            }, 1200);
 
-        $('#but3').animate({
-            top: cool_clas['old_x'],
-            left: cool_clas['old_y']
-        }, 1000);
+        }
 
-        setTimeout(function () {
-            $('#take-part').toggle();
+        else if (step == 2) {
+            $('#come_to_us_brother').toggle();
             step = 1;
-            reset_radius();
             display_buttons();
-            lock_click = false;
-        }, 1000);
+            reset_radius();
+            bask_locker = false;
+        }
 
+        else if (step == 4) {
+            TweenLite.to(cool_clas, 2, {
+                ease: Power4.easeOut,
+                line_helper: 0
+            });
 
+            $('#but3').animate({
+                top: cool_clas['old_x'],
+                left: cool_clas['old_y']
+            }, 1000);
+
+            setTimeout(function () {
+                $('#take-part').toggle();
+                step = 1;
+                reset_radius();
+                display_buttons();
+                lock_click = false;
+                bask_locker = false;
+            }, 1000);
+        }
     }
 });
 
@@ -584,6 +590,7 @@ function take_part() {
             }, 1000);
 
             step = 4;
+
             lock_click = true;
             $('#take-part').toggle();
         }, 1000);
