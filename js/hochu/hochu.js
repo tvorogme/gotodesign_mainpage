@@ -488,6 +488,7 @@ $(".back-hochu").click(function () {
         bask_locker = true;
         cool_clas['line_helper'] = 0;
         if (step == 1) {
+            hide_buttons();
             TweenLite.to(cool_clas, 2, {
                 ease: Power4.easeOut,
                 x1: left_position + width / 2,
