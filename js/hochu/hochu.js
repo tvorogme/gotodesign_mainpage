@@ -214,8 +214,8 @@ $("#component-2").click(function () {
 
 function start_shari() {
     hide_buttons();
-    top_position = $(".table-shar button").position().top;
-    left_position = $(".table-shar button").position().left;
+    top_position = $(".table-shar button").position().top  + 98;
+    left_position = $(".table-shar button").position().left + 98;
     width = $(".table-shar button").width();
     height = $(".table-shar button").height();
 
@@ -338,7 +338,7 @@ function start_shari() {
                 $('.take_part_in').each(function () {
                     ctx.beginPath();
                     ctx.moveTo($('#but3').position().left + 138, $('#but3').position().top + 110);
-                    ctx.lineTo(c.width / 2, $(this).position().top + 60);
+                    ctx.lineTo(c.width / 2, $(this).position().top + 37);
                     ctx.strokeStyle = 'rgba(97,97,97,0.5)';
                     ctx.stroke();
                 });
@@ -541,6 +541,7 @@ $(".back-hochu").click(function () {
         }
 
         else if (step == 4) {
+            cool_clas["line_helper"] = 4;
             TweenLite.to(cool_clas, 2, {
                 ease: Power4.easeOut,
                 line_helper: 0
@@ -582,17 +583,18 @@ function take_part() {
                 ease: Power4.easeOut
             });
 
-            console.log($('#middle_shar').position().top + 200);
+            $('#take-part').toggle();
+            var top_position = $('#middle_shar').position().top - 63;
 
             $('#but3').animate({
-                top: $('#middle_shar').position().top + 200,
+                top: top_position,
                 left: "20vw"
             }, 1000);
 
             step = 4;
 
             lock_click = true;
-            $('#take-part').toggle();
+
         }, 1000);
     }
 }
@@ -612,8 +614,8 @@ $('.input').keypress(function (e) {
         reset_coor();
 
         cool_clas["line_helper"] = 4;
-
         step = 0;
+
         setTimeout(function () {
             $(".subscription_alert").toggle();
             $("#want").toggle();
