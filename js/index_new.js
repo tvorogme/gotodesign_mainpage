@@ -25,7 +25,7 @@ Array.prototype.slice.call(document.querySelectorAll('.button'), 0).forEach(func
 });
 
 function next_down() {
-    if (slide != 4) {
+    if (slide != 5) {
         slide += 1;
     }
 }
@@ -37,11 +37,9 @@ function next_up() {
 }
 
 function get_slide(n) {
+    console.log(n);
     if (lock == false) {
         if (n == 0) {
-            console.log('first slide');
-
-
             lock = true;
             $('#logo').animate({'width': '479px'}, slide_speed);
             $('.text').animate({top: '100vh'}, slide_speed);
@@ -52,9 +50,6 @@ function get_slide(n) {
         }
 
         else if (n == 1) {
-            console.log('second slide');
-
-
             lock = true;
             if ($('#logo').width() != 300) {
                 $('#logo').animate({'width': '300px'}, slide_speed);
@@ -79,12 +74,43 @@ function get_slide(n) {
             }
 
         }
+
         else if (n == 2) {
-            console.log('third slide');
+            lock = true;
+
+            if ($('.krutyashki').position().top != 0) {
+                $('.first-slide').animate({
+                    top: '-100vh'
+                }, slide_speed);
+
+                $('.tetris').animate({
+                    top: '0'
+                }, slide_speed);
+
+                setTimeout(function () {
+                    lock = false;
+                }, slide_speed + 200);
+            }
+            else {
+                $('.krutyashki').animate({
+                    top: '100vh'
+                }, slide_speed);
+
+                $('.tetris').animate({
+                    top: '0'
+                }, slide_speed);
+
+                setTimeout(function () {
+                    lock = false;
+                }, slide_speed + 200);
+            }
+        }
+
+        else if (n == 3) {
             lock = true;
 
             if ($('.button-big-picture').position().top != 0) {
-                $('.first-slide').animate({
+                $('.tetris').animate({
                     top: '-100vh'
                 }, slide_speed);
 
@@ -97,7 +123,6 @@ function get_slide(n) {
                 }, slide_speed + 200);
             }
             else {
-
                 $('.button-big-picture').animate({
                     top: '100vh'
                 }, slide_speed);
@@ -111,8 +136,7 @@ function get_slide(n) {
                 }, slide_speed + 200);
             }
         }
-        else if (n == 3) {
-            console.log('fourth slide');
+        else if (n == 4) {
             lock = true;
 
             setTimeout(function () {
@@ -144,8 +168,7 @@ function get_slide(n) {
                 lock = false;
             }, slide_speed + 200);
         }
-        else if (n == 4) {
-            console.log('5 slide');
+        else if (n == 5) {
             lock = true;
 
             $('.button-big-picture').animate({
