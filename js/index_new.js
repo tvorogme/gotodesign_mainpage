@@ -37,7 +37,6 @@ function next_up() {
 }
 
 function get_slide(n) {
-    console.log(n);
     if (lock == false) {
         if (n == 0) {
             lock = true;
@@ -64,7 +63,7 @@ function get_slide(n) {
                     top: 0
                 }, slide_speed);
 
-                $('.krutyashki').animate({
+                $('.tetris').animate({
                     top: '100vh'
                 }, slide_speed);
 
