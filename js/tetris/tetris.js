@@ -3,17 +3,20 @@ $(document).ready(function () {
         var c_tetris = document.getElementById("tetris");
         var tetris_context = c_tetris.getContext("2d");
 
+        c_tetris.height = 800;
         c_tetris.width = 900;
-        c_tetris.height = 400;
+
+        var W = 900, H = 800;
+
 
         var game_field = [];
         var game_freezed = [];
 
-        var rows = 8;
+        var rows = 16;
         var cols = 18;
 
 
-        var step_time = 300;
+        var step_time = 200;
 
         for (var i = 0; i < rows; i++) {
             var tmp = [];
@@ -27,8 +30,8 @@ $(document).ready(function () {
         }
 
         var shapes = [
-            [[1, 1, 1, 1],
-                [0, 0, 0, 0]],
+            [[0, 0, 0, 0],
+                [1, 1, 1, 1]],
 
             [[1, 0, 0, 0],
                 [1, 1, 1, 0]],
@@ -57,7 +60,7 @@ $(document).ready(function () {
         var count_blocks = [1, 1, 1, 1, 1, 1, 1];
 
         var sum = count_blocks.reduce(add, 0);
-        var positions = [0, 0, 0, 0, 0, 0, 0];
+        var positions = [5, 0, 0, 0, 0, 0, 0];
 
 
 // TESTS
@@ -97,7 +100,9 @@ $(document).ready(function () {
 
 
         function valid(X, Y, block) {
-            if (1 in block[1] && Y + 1 >= rows || !(1 in block[1]) && Y >= rows) {
+            if (1 in block[1] && Y + 1 >= rows
+                || !(1 in block[1]) && Y >= rows
+                || 1 in block[1] && game_freezed[1][X] && block[1][0]) {
                 return false;
             }
 
@@ -138,24 +143,25 @@ $(document).ready(function () {
             var game_interval = window.setInterval(function () {
                 cur_Y += 1;
 
-                if (!valid(cur_X, cur_Y + 1, block)) {
+                if (!valid(cur_X, cur_Y+1, block)) {
                     lock_tetris = false;
                     window.clearInterval(game_interval);
                 }
 
-            }, 300);
+            }, step_time);
 
         }
 
-        step(qubes[3], positions[0]);
+        step(qubes[3], 0);
 
+        var b = 0;
         setInterval(function () {
             if (lock_tetris === false) {
-                step(qubes[1], positions[0]);
+                step(qubes[b], positions[b]);
+                b++;
             }
         }, 1000);
 
-        var W = 900, H = 400;
         var BLOCK_W = W / cols, BLOCK_H = H / rows;
 
         function drawBlock(x, y) {
@@ -194,11 +200,15 @@ $(document).ready(function () {
         function keyPress(key) {
             switch (key) {
                 case 'left':
-                    cur_X -= 1;
+                    if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
+                        cur_X -= 1;
+                    }
                     break;
 
                 case 'right':
-                    cur_X += 1;
+                    if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
+                        cur_X += 1;
+                    }
                     break;
 
                 case 'down':
