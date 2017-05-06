@@ -10,7 +10,7 @@ $(document).ready(function () {
 
         var game_field = [], game_freezed = [];
 
-        var rows = 8, cols = 17;
+        var rows = 6, cols = 12;
 
         var step_time = 100;
 
