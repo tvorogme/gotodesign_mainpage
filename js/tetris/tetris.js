@@ -1,22 +1,18 @@
 $(document).ready(function () {
-        var block;
+        var block, now_color;
         var c_tetris = document.getElementById("tetris");
         var tetris_context = c_tetris.getContext("2d");
+        var W = 1170, H = 600;
+        tetris_context.font = "30px Arial";
+        tetris_context.fillText("Hello World", 0, 0);
+        c_tetris.height = H;
+        c_tetris.width = W;
 
-        c_tetris.height = 800;
-        c_tetris.width = 900;
+        var game_field = [], game_freezed = [];
 
-        var W = 900, H = 800;
+        var rows = 8, cols = 17;
 
-
-        var game_field = [];
-        var game_freezed = [];
-
-        var rows = 16;
-        var cols = 18;
-
-
-        var step_time = 200;
+        var step_time = 100;
 
         for (var i = 0; i < rows; i++) {
             var tmp = [];
@@ -39,8 +35,8 @@ $(document).ready(function () {
             [[0, 0, 0, 1],
                 [0, 1, 1, 1]],
 
-            [[1, 1, 0, 0],
-                [1, 1, 0, 0]],
+            [[1, 1, 1, 0],
+                [1, 1, 1, 0]],
 
             [[0, 1, 1, 0],
                 [1, 1, 0, 0]],
@@ -57,27 +53,14 @@ $(document).ready(function () {
             return a + b;
         }
 
-        var count_blocks = [1, 1, 1, 1, 1, 1, 1];
-
-        var sum = count_blocks.reduce(add, 0);
-        var positions = [5, 0, 0, 0, 0, 0, 0];
-
-
-// TESTS
-
-        if (sum !== positions.length) {
-            alert("Sum of blocks not equal with positions.length")
-        }
-
-        if (count_blocks.length !== shapes.length) {
-            alert("Count of blocks not equal with shapes")
-        }
+        var count_blocks = [0, 1, 2, 0, 3, 2, 1, 1, 2, 0, 0, 6, 4];
+        var positions = [1, 5, 8, 12, 7, 1, 12, 1, 12, 4, 9, 1, 13];
+        var colors = [1, 2, 2, 1, 3, 4, 4, 2, 2, 5, 5, 4, 4];
+        var colors_meta = ["", "rgb(255, 140, 102)", "rgb(81, 13, 129)", "rgb(67, 180, 152)", "rgb(238, 229, 58)"];
 
         var qubes = [];
         for (i = 0; i < count_blocks.length; i++) {
-            for (var j = 0; j < count_blocks[i]; j++) {
-                qubes.push(shapes[i]);
-            }
+            qubes.push(shapes[count_blocks[i]]);
         }
 
         function clear_game() {
@@ -119,8 +102,9 @@ $(document).ready(function () {
 
         var lock_tetris = false;
 
-        function step(block_proto, position) {
+        function step(block_proto, position, color) {
             block = block_proto;
+            now_color = colors[color];
             if (!lock_tetris) {
                 game_freezed = game_field;
             }
@@ -133,7 +117,7 @@ $(document).ready(function () {
             var n = 0;
             for (var g = 0; g < 2; g++) {
                 for (i = 0; i < 4; i++) {
-                    game_field[g][cur_X + n] = block[g][i];
+                    game_field[g][cur_X + n] = block[g][i] * now_color;
                     n += 1;
                 }
                 n = 0;
@@ -143,7 +127,7 @@ $(document).ready(function () {
             var game_interval = window.setInterval(function () {
                 cur_Y += 1;
 
-                if (!valid(cur_X, cur_Y+1, block)) {
+                if (!valid(cur_X, cur_Y + 1, block)) {
                     lock_tetris = false;
                     window.clearInterval(game_interval);
                 }
@@ -152,15 +136,17 @@ $(document).ready(function () {
 
         }
 
-        step(qubes[3], 0);
-
         var b = 0;
-        setInterval(function () {
+        var lol = setInterval(function () {
             if (lock_tetris === false) {
-                step(qubes[b], positions[b]);
+                step(qubes[b], positions[b], colors[b]);
                 b++;
+
+                if (b >= count_blocks.length) {
+                    window.clearInterval(lol);
+                }
             }
-        }, 1000);
+        }, step_time);
 
         var BLOCK_W = W / cols, BLOCK_H = H / rows;
 
@@ -175,7 +161,7 @@ $(document).ready(function () {
             var h = 0;
             for (g = 0; g < 2; g++) {
                 for (i = 0; i < 4; i++) {
-                    game_field[cur_Y + h][cur_X + n] += block[g][i];
+                    game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
                     n += 1
                 }
                 h += 1;
@@ -183,11 +169,11 @@ $(document).ready(function () {
             }
 
             tetris_context.clearRect(0, 0, W, H);
-            tetris_context.strokeStyle = 'black';
             for (var x = 0; x < cols; ++x) {
                 for (var y = 0; y < rows; ++y) {
                     if (game_field[y][x]) {
-                        // ctx.fillStyle = colors[ board[ y ][ x ] - 1 ];
+                        tetris_context.fillStyle = colors_meta[game_field[y][x]];
+                        tetris_context.strokeStyle = colors_meta[game_field[y][x]];
                         drawBlock(x, y);
                     }
                 }
@@ -200,13 +186,13 @@ $(document).ready(function () {
         function keyPress(key) {
             switch (key) {
                 case 'left':
-                    if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
+                    if (valid(cur_X - 1, cur_Y + 1, block) && lock_tetris) {
                         cur_X -= 1;
                     }
                     break;
 
                 case 'right':
-                    if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
+                    if (valid(cur_X + 1, cur_Y + 1, block) && lock_tetris) {
                         cur_X += 1;
                     }
                     break;
