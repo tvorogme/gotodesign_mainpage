@@ -1,10 +1,10 @@
 $(document).ready(function () {
-        var block, now_color;
+        var block, now_color, block_id;
         var c_tetris = document.getElementById("tetris");
         var tetris_context = c_tetris.getContext("2d");
         var W = 1170, H = 600;
-        tetris_context.font = "30px Arial";
-        tetris_context.fillText("Hello World", 0, 0);
+
+
         c_tetris.height = H;
         c_tetris.width = W;
 
@@ -26,36 +26,211 @@ $(document).ready(function () {
         }
 
         var shapes = [
-            [[0, 0, 0, 0],
-                [1, 1, 1, 1]],
+            [[1, 1, 1, 1],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
 
             [[1, 0, 0, 0],
-                [1, 1, 1, 0]],
+                [1, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
 
-            [[0, 0, 0, 1],
-                [0, 1, 1, 1]],
-
-            [[1, 1, 1, 0],
-                [1, 1, 1, 0]],
-
-            [[0, 1, 1, 0],
-                [1, 1, 0, 0]],
-
-            [[0, 1, 0, 0],
-                [1, 1, 1, 0]],
+            [[0, 0, 1, 0],
+                [1, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
 
             [[1, 1, 0, 0],
-                [0, 1, 1, 0]]
+                [1, 1, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 1, 0],
+                [1, 1, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [1, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[1, 1, 0, 0],
+                [0, 1, 1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 0, 1, 0],
+                [0, 0, 1, 0],
+                [0, 0, 1, 0],
+                [0, 0, 1, 0]],
+
+            [[0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0]],
+
+            [[0, 1, 1, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 0, 0, 0],
+                [1, 1, 1, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [1, 1, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[1, 0, 0, 0],
+                [1, 0, 0, 0],
+                [1, 1, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[1, 1, 1, 0],
+                [1, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[1, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[1, 0, 0, 0],
+                [1, 1, 0, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [1, 1, 0, 0],
+                [1, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [1, 1, 0, 0],
+                [1, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [1, 1, 0, 0],
+                [1, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [1, 1, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]],
+
+            [[0, 1, 0, 0],
+                [0, 1, 1, 0],
+                [0, 1, 0, 0],
+                [0, 0, 0, 0]]
+
         ];
 
+        var cur_shape = 1;
 
-        function add(a, b) {
-            return a + b;
+        function reshape_block() {
+            if (cur_shape + 1 === 1) {
+                return shapes[block_id]
+            }
+            else if (cur_shape + 1 === 2) {
+                switch (block_id) {
+                    case 0:
+                        return shapes[7];
+                        break;
+                    case 1:
+                        return shapes[9];
+                        break;
+                    case 2:
+                        return shapes[12];
+                        break;
+                    case 3:
+                        return shapes[block_id];
+                        break;
+                    case 4:
+                        return shapes[15];
+                        break;
+                    case 5:
+                        return shapes[19];
+                        break;
+                    case 6:
+                        return shapes[17];
+                        break;
+                }
+            }
+            else if (cur_shape + 1 === 3) {
+                switch (block_id) {
+                    case 0:
+                        return shapes[block_id];
+                        break;
+                    case 1:
+                        return shapes[10];
+                        break;
+                    case 2:
+                        return shapes[13];
+                        break;
+                    case 3:
+                        return shapes[block_id];
+                        break;
+                    case 4:
+                        return shapes[16];
+                        break;
+                    case 5:
+                        return shapes[20];
+                        break;
+                    case 6:
+                        return shapes[18];
+                        break;
+                }
+
+            }
+            else if (cur_shape + 1 === 4) {
+                switch (block_id) {
+                    case 0:
+                        return shapes[8];
+                        break;
+                    case 1:
+                        return shapes[11];
+                        break;
+                    case 2:
+                        return shapes[14];
+                        break;
+                    case 3:
+                        return shapes[block_id];
+                        break;
+                    case 4:
+                        return shapes[block_id];
+
+                        break;
+                    case 5:
+                        return shapes[block_id];
+                        break;
+                    case 6:
+                        return shapes[block_id];
+                        break;
+                }
+
+            }
         }
 
-        var count_blocks = [0, 1, 2, 0, 3, 2, 1, 1, 2, 0, 0, 6, 4];
-        var positions = [1, 5, 8, 12, 7, 1, 12, 1, 12, 4, 9, 1, 13];
-        var colors = [1, 2, 2, 1, 3, 4, 4, 2, 2, 5, 5, 4, 4];
+        function add_shape() {
+            if (cur_shape + 1 === 4) {
+                cur_shape = 0
+            }
+            else {
+                cur_shape += 1
+            }
+        }
+
+        var count_blocks = [0, 1, 6, 3, 16, 15,9];
+        var positions = [4, 0, 7, 10, 3, 0,1];
+        var colors = [1, 1, 2, 3, 4, 2, 3];
         var colors_meta = ["", "rgb(255, 140, 102)", "rgb(81, 13, 129)", "rgb(67, 180, 152)", "rgb(238, 229, 58)"];
 
         var qubes = [];
@@ -81,29 +256,31 @@ $(document).ready(function () {
 
         var cur_X, cur_Y = 0;
 
-
         function valid(X, Y, block) {
-            if (1 in block[1] && Y + 1 >= rows
-                || !(1 in block[1]) && Y >= rows
-                || 1 in block[1] && game_freezed[1][X] && block[1][0]) {
-                return false;
-            }
+            for (var r = 0; r < 4; r++) {
+                if (-1 !== $.inArray(1, block[r]) && Y + r >= rows) {
+                    return false;
+                }
 
-            for (var r = 0; r < 2; r++) {
-                for (var g = 0; g < block[r].length; g++) {
-                    if (block[r][g] && game_freezed[Y + r][X + g]) {
+                for (var g = 0; g < 4; g++) {
+                    if (block[r][g] && game_freezed[Y + r][X + g]
+                        || block[r][g] && X + g > cols
+                        || block[r][g] && X + g < 0) {
                         return false;
                     }
                 }
+
             }
 
             return true;
         }
 
+
         var lock_tetris = false;
 
         function step(block_proto, position, color) {
-            block = block_proto;
+            block = block_proto[0];
+            block_id = block_proto[1];
             now_color = colors[color];
             if (!lock_tetris) {
                 game_freezed = game_field;
@@ -115,7 +292,9 @@ $(document).ready(function () {
             cur_Y = 0;
 
             var n = 0;
-            for (var g = 0; g < 2; g++) {
+
+
+            for (var g = 0; g < 4; g++) {
                 for (i = 0; i < 4; i++) {
                     game_field[g][cur_X + n] = block[g][i] * now_color;
                     n += 1;
@@ -139,7 +318,7 @@ $(document).ready(function () {
         var b = 0;
         var lol = setInterval(function () {
             if (lock_tetris === false) {
-                step(qubes[b], positions[b], colors[b]);
+                step([qubes[b], count_blocks[b]], positions[b], colors[b]);
                 b++;
 
                 if (b >= count_blocks.length) {
@@ -159,11 +338,17 @@ $(document).ready(function () {
             clear_game();
             var n = 0;
             var h = 0;
-            for (g = 0; g < 2; g++) {
+
+
+            for (g = 0; g < 4; g++) {
                 for (i = 0; i < 4; i++) {
-                    game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
+                    if (typeof game_field[cur_Y + h] !== 'undefined') {
+                        game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
+                    }
                     n += 1
+
                 }
+
                 h += 1;
                 n = 0;
             }
@@ -186,13 +371,13 @@ $(document).ready(function () {
         function keyPress(key) {
             switch (key) {
                 case 'left':
-                    if (valid(cur_X - 1, cur_Y + 1, block) && lock_tetris) {
+                    if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
                         cur_X -= 1;
                     }
                     break;
 
                 case 'right':
-                    if (valid(cur_X + 1, cur_Y + 1, block) && lock_tetris) {
+                    if (valid(cur_X + 1, cur_Y, block) && lock_tetris) {
                         cur_X += 1;
                     }
                     break;
@@ -201,6 +386,10 @@ $(document).ready(function () {
                     break;
 
                 case 'rotate':
+                    if (valid(cur_X, cur_Y + 1, reshape_block())) {
+                        block = reshape_block();
+                        add_shape();
+                    }
                     break;
             }
 

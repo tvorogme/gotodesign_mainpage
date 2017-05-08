@@ -736,6 +736,7 @@ body {
 #tetris{
     width: 1170px;
     height: 600px;
+    border: 1px solid;
     margin: 0 auto;
     display: block;
 }
