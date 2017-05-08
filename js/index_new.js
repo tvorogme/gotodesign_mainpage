@@ -89,6 +89,7 @@ function get_slide(n) {
                 setTimeout(function () {
                     lock = false;
                 }, slide_speed + 200);
+
             }
             else {
                 $('.krutyashki').animate({
