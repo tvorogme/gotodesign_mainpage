@@ -1,7 +1,7 @@
 var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tetris_context, W, H;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
-var step_time = 1000;
+var step_time = 100;
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -93,14 +93,14 @@ var shapes = [
         [1, 0, 0, 0],
         [0, 0, 0, 0]],
 
-    [[0, 1, 0, 0],
-        [1, 1, 0, 0],
-        [1, 0, 0, 0],
+    [[0, 0, 0, 0],
+        [1, 1, 1, 0],
+        [0, 1, 0, 0],
         [0, 0, 0, 0]],
 
     [[0, 1, 0, 0],
         [1, 1, 0, 0],
-        [0, 0, 0, 0],
+        [0, 1, 0, 0],
         [0, 0, 0, 0]],
 
     [[0, 1, 0, 0],
@@ -109,6 +109,12 @@ var shapes = [
         [0, 0, 0, 0]]
 
 ];
+
+var count_blocks = [0, 1, 3, 4, 6, 19, 10, 18, 16, 15, 18, 16, 10, 20, 6, 0, 3, 9];
+var positions = [4, 8, 0, 2, 4, 10, 0, 2, 9, 6, 7, 1, 9, 4, 6, 8, 3, -1];
+var colors = [1, 3, 1, 2, 4, 4, 3, 1, 1, 2, 4, 4, 3, 3, 2, 1, 2, 1];
+var colors_meta = ["", "rgb(255, 140, 102)", "rgb(81, 13, 129)", "rgb(67, 180, 152)", "rgb(238, 229, 58)"];
+
 var cur_shape = 1;
 
 $(document).ready(function () {
@@ -142,6 +148,7 @@ $(document).ready(function () {
 function start_tetris() {
     tetris_context.clearRect(0, 0, W, H);
     $("#what_we_do").toggle();
+
     function reshape_block() {
         if (cur_shape + 1 === 1) {
             return shapes[block_id]
@@ -192,7 +199,7 @@ function start_tetris() {
                     return shapes[20];
                     break;
                 case 6:
-                    return shapes[18];
+                    return shapes[block_id];
                     break;
             }
 
@@ -235,14 +242,9 @@ function start_tetris() {
         }
     }
 
-    var count_blocks = [0, 1, 6, 3, 16, 15, 9];
-    var positions = [4, 0, 7, 10, 3, 0, 1];
-    var colors = [1, 1, 2, 3, 4, 2, 3];
-    var texts = ['нейроинтерфейсы', 'алгоритмы', 'пром. дизайн', 'VR/AR', 'биоинформатика', 'машинное обучение', 'мобильная разработка'];
-    var colors_meta = ["", "rgb(255, 140, 102)", "rgb(81, 13, 129)", "rgb(67, 180, 152)", "rgb(238, 229, 58)"];
-
     var qubes = [];
     for (i = 0; i < count_blocks.length; i++) {
+        console.log(i);
         qubes.push(shapes[count_blocks[i]]);
     }
 
@@ -302,15 +304,15 @@ function start_tetris() {
 
         var n = 0;
 
-
-        for (var g = 0; g < 4; g++) {
-            for (i = 0; i < 4; i++) {
-                game_field[g][cur_X + n] = block[g][i] * now_color;
-                n += 1;
+        if (valid(cur_X, cur_Y, block)) {
+            for (var g = 0; g < 4; g++) {
+                for (i = 0; i < 4; i++) {
+                    game_field[g][cur_X + n] = block[g][i] * now_color;
+                    n += 1;
+                }
+                n = 0;
             }
-            n = 0;
         }
-
         lock_tetris = true;
         var game_interval = window.setInterval(function () {
             cur_Y += 1;
@@ -328,10 +330,11 @@ function start_tetris() {
     var lol = setInterval(function () {
         if (lock_tetris === false) {
             if (b !== 0) {
-                saved_text.push([texts[cur_text_id], text_X, text_Y]);
+                saved_text.push([texts[cur_text_id], text_X, text_Y, rotate]);
             }
-
-            step([qubes[b], count_blocks[b]], positions[b], colors[b], texts[b]);
+            if (valid(positions[b], 0, qubes[b])) {
+                step([qubes[b], count_blocks[b]], positions[b], colors[b], texts[b]);
+            }
             cur_text_id = b;
             b++;
 
@@ -344,10 +347,11 @@ function start_tetris() {
     var BLOCK_W = W / cols, BLOCK_H = H / rows;
 
     function drawBlock(x, y) {
-        tetris_context.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1, BLOCK_H - 1);
-        tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - 1, BLOCK_H - 1);
+        tetris_context.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
+        tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
     }
 
+    var texts = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
     function get_text_coors() {
         var start_x = cur_X * BLOCK_W;
@@ -356,18 +360,25 @@ function start_tetris() {
 
         switch (cur_text_id) {
             case 0:
-                start_x += 2 * BLOCK_W - (texts[cur_text_id].length * 9);
+                start_x += 2 * BLOCK_W - tetris_context.measureText(texts[0]).width / 2;
                 start_y += BLOCK_H / 2 + 15;
                 break;
             case 1:
-                start_x += 1.5 * BLOCK_W - (texts[cur_text_id].length * 9);
+                start_x += 1.5 * BLOCK_W - tetris_context.measureText(texts[1]).width / 2;
                 start_y += BLOCK_H + BLOCK_H / 2 + 15;
                 break;
             case 2:
+                start_x += BLOCK_W - tetris_context.measureText(texts[2]).width / 2;
+                start_y += BLOCK_H + 15;
                 break;
             case 3:
+                start_y += 2 * BLOCK_H - tetris_context.measureText(texts[2]).width / 4;
+                start_x += (tetris_context.measureText(texts[2]).width * (Math.sqrt(3) / 2)) / 2 - 10;
+                rotate = -30 * Math.PI / 180;
                 break;
             case 4:
+                start_y = [start_y + BLOCK_H/2+ 15, start_y + 1.5*BLOCK_H + 15];
+                start_x = [start_x + BLOCK_W + 10, start_x + BLOCK_W ];
                 break;
             case 5:
                 break;
@@ -413,17 +424,34 @@ function start_tetris() {
         var h = 0;
 
 
-        for (g = 0; g < 4; g++) {
-            for (i = 0; i < 4; i++) {
-                if (typeof game_field[cur_Y + h] !== 'undefined') {
-                    game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
+        if (valid(cur_X, cur_Y, block)) {
+            for (g = 0; g < 4; g++) {
+                for (i = 0; i < 4; i++) {
+                    if (typeof game_field[cur_Y + h] !== 'undefined') {
+                        game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
+                    }
+                    n += 1
+
                 }
-                n += 1
 
+                h += 1;
+                n = 0;
             }
+        } else {
+            cur_Y -= 1;
 
-            h += 1;
-            n = 0;
+            for (g = 0; g < 4; g++) {
+                for (i = 0; i < 4; i++) {
+                    if (typeof game_field[cur_Y + h] !== 'undefined') {
+                        game_field[cur_Y + h][cur_X + n] += block[g][i] * now_color;
+                    }
+                    n += 1
+
+                }
+
+                h += 1;
+                n = 0;
+            }
         }
 
         tetris_context.clearRect(0, 0, W, H);
@@ -444,17 +472,44 @@ function start_tetris() {
 
         // Draw saved text
         for (var t = 0; t < saved_text.length; t++) {
-            tetris_context.fillText(saved_text[t][0], saved_text[t][1], saved_text[t][2]);
+            tetris_context.save();
+            if (typeof saved_text[t][0] === "string") {
+                if (saved_text[t][3]) {
+                    tetris_context.save();
+                    tetris_context.translate(saved_text[t][1], saved_text[t][2]);
+                    tetris_context.rotate(saved_text[t][3]);
+                    tetris_context.fillText(saved_text[t][0], 0, 0);
+                    tetris_context.restore()
+                } else {
+                    tetris_context.fillText(saved_text[t][0], saved_text[t][1], saved_text[t][2]);
+                    tetris_context.restore();
+                }
+            } else {
+                tetris_context.fillText(saved_text[t][0][0], saved_text[t][1][0], saved_text[t][2][0]);
+                tetris_context.fillText(saved_text[t][0][1], saved_text[t][1][1], saved_text[t][2][1]);
+            }
         }
-
 
         // Draw current text
         answer = get_text_coors();
 
         text_X = answer[0];
         text_Y = answer[1];
-
-        tetris_context.fillText(cur_text, text_X, text_Y);
+        rotate = answer[2];
+        if (typeof cur_text === "string") {
+            if (rotate) {
+                tetris_context.save();
+                tetris_context.translate(text_X, text_Y);
+                tetris_context.rotate(rotate);
+                tetris_context.fillText(cur_text, 0, 0);
+                tetris_context.restore()
+            } else {
+                tetris_context.fillText(cur_text, text_X, text_Y);
+            }
+        } else {
+            tetris_context.fillText(cur_text[0], text_X[0], text_Y[0]);
+            tetris_context.fillText(cur_text[1], text_X[1], text_Y[1]);
+        }
 
     }
 

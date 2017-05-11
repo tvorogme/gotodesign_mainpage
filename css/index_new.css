@@ -750,11 +750,36 @@ body {
 #tetris {
     width: 1170px;
     height: 600px;
-    /*border: 1px solid;*/
     margin: 0 auto;
     display: block;
     z-index: -10;
 
+}
+
+.slick-prev {
+    left: 25px !important;
+    width: 40px;
+    height: 58px;
+    cursor: pointer;
+    background: url(./img/buttons.png) center center no-repeat !important;
+    overflow: hidden;
+    background-position: -12px -31px !important;
+    z-index: 100;
+}
+
+.slick-next {
+    right: 25px !important;
+    width: 40px;
+    height: 58px;
+    cursor: pointer;
+    background: url(./img/buttons.png) center center no-repeat !important;
+    overflow: hidden;
+    background-position: -70px -31px !important;
+    z-index: 100;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 0;
 }
 
 #werew {
