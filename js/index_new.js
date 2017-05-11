@@ -36,6 +36,11 @@ function next_up() {
     }
 }
 
+function set_position() {
+    $('#wave_canvas').css('top',$('.left').position().top + 40);
+    $('#wave_canvas').css('left',$('.left').position().left)
+
+}
 function get_slide(n) {
     if (lock == false) {
         if (n == 0) {
@@ -230,6 +235,7 @@ function onWheel(e) {
 }
 
 $(document).ready(function (ev) {
+    set_position();
     var toggle = $('#ss_toggle');
     var menu = $('#ss_menu');
     var rot;
@@ -306,6 +312,9 @@ function awesome() {
     $('.bio-text').css('display', 'none');
 }
 
+$(document).resize(function () {
+   set_position();
+});
 
 setTimeout(function () {
     if (slide == 0) {
