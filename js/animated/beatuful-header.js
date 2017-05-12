@@ -103,7 +103,6 @@ function range(start, stop, step) {
             window.addEventListener('mousemove', mouseMove);
         }
         window.addEventListener('scroll', scrollCheck);
-        window.addEventListener('resize', resize);
     }
 
     function mouseMove(e) {

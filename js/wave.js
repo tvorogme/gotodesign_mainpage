@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         ctx_wave.beginPath();
         ctx_wave.rect(0, 0, $("#if_you").width(), 400);
-        ctx_wave.fillStyle = "rgb(81, 13, 129)";
+        ctx_wave.fillStyle = "rgb(67, 180, 152)";
         ctx_wave.fill();
         ctx_wave.closePath();
 

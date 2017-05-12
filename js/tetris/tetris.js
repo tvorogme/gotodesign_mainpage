@@ -3,7 +3,7 @@ var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tet
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
-var step_time = 100;
+var step_time = 400;
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -123,12 +123,12 @@ $(document).ready(function () {
     saved_text = [];
     c_tetris = document.getElementById("tetris");
     tetris_context = c_tetris.getContext("2d");
-    W = 1170;
-    H = 600;
+
+    W = $('#tetris').width();
+    H = $('#tetris').height();
 
     c_tetris.height = H;
     c_tetris.width = W;
-
 
     for (var i = 0; i < rows; i++) {
         var tmp = [];
@@ -140,13 +140,13 @@ $(document).ready(function () {
         game_field.push(tmp);
         game_freezed.push(tmp);
     }
-    tetris_first_param = {'rad': 180};
+    tetris_first_param = {'rad': 130};
     tetris_first_interval = window.setInterval(function () {
         if (!lock_first_interval) {
             tetris_context.clearRect(0, 0, W, H);
             tetris_context.beginPath();
             tetris_context.lineWidth = 4;
-            tetris_context.arc(W / 2 - 5, H / 2 + 90, tetris_first_param['rad'], 0, 2 * Math.PI, false);
+            tetris_context.arc(W / 2, H / 2, tetris_first_param['rad'], 0, 2 * Math.PI, false);
             tetris_context.strokeStyle = '#080808';
             tetris_context.stroke();
             tetris_context.closePath();
@@ -157,6 +157,15 @@ $(document).ready(function () {
 
 function start_tetris() {
     window.clearInterval(tetris_first_interval);
+
+    $('#tetris').css('width', '1170px').css('height', '600px');
+    W = 1170;
+    H = 600;
+    $('#tetris').css('position', 'static');
+    c_tetris.height = H;
+    c_tetris.width = W;
+
+
     lock_first_interval = true; // bugs of js
     tetris_context.clearRect(0, 0, W, H);
     $("#we-teach").toggle();
@@ -256,7 +265,6 @@ function start_tetris() {
 
     var qubes = [];
     for (i = 0; i < count_blocks.length; i++) {
-        console.log(i);
         qubes.push(shapes[count_blocks[i]]);
     }
 
@@ -570,19 +578,20 @@ function start_tetris() {
 
 $('#we-teach').mouseenter(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 200,
+        rad: 130,
         ease: Power4.easeOut
     });
 }).mouseout(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 180,
+        rad: 150,
         ease: Power4.easeOut
     });
 });
 
 $('#we-teach a').mouseenter(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 200,
+        rad: 150,
+        rad: 150,
         ease: Power4.easeOut
     });
 });
