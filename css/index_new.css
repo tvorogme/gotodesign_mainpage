@@ -764,6 +764,10 @@ body {
     margin: 3px;
 }
 
+#demo-canvas{
+    display: none;
+}
+
 .footer-mail {
     color: #e61919;
 }

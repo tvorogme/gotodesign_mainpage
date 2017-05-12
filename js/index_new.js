@@ -54,6 +54,8 @@ function get_slide(n) {
         }
 
         else if (n == 1) {
+            $("#demo-canvas").css('display', 'block');
+
             lock = true;
             if ($('#logo').width() != 300) {
                 $('#logo').animate({'width': '300px'}, slide_speed);
@@ -321,7 +323,7 @@ setTimeout(function () {
         get_slide(1);
         next_down();
     }
-}, 2000);
+}, 2500);
 
 $('#question-footer-question ').click(function () {
     $(this).animate({
@@ -329,6 +331,6 @@ $('#question-footer-question ').click(function () {
     }, 300);
 
     $("#pseudo-helper-kostil").animate({
-       height: "0px"
+        height: "0px"
     }, 300);
 });
