@@ -234,6 +234,7 @@ function start_shari() {
         setInterval(function () {
             ctx.clearRect(0, 0, c.width, c.height);
             if (step == 0) {
+                ctx.lineWidth = 4;
                 ctx.beginPath();
                 ctx.arc(left_position + width / 2, top_position + height / 2, cool_clas['main_r'], 0, 2 * Math.PI, false);
                 ctx.strokeStyle = '#080808';
@@ -603,6 +604,7 @@ function take_part() {
 $('.input').keypress(function (e) {
     if (e.which == 13 && step == 2) {
         alert($('#come_to_us_brother input').val());
+        $('#come_to_us_brother input').val('');
 
         $('#come_to_us_brother').toggle();
 
