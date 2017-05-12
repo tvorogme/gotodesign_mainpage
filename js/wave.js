@@ -16,11 +16,11 @@ var now_animation = false;
 $(document).ready(function () {
     $(".right").css("height", $(".left").height());
     $("#wave_canvas").css("width", $("#if_you").width());
-    $("#wave_canvas").css("height", '300px');
+    $("#wave_canvas").css("height", '400px');
 
     var c_wave = document.getElementById("wave_canvas");
     c_wave.width = $("#if_you").width();
-    c_wave.height = 300;
+    c_wave.height = 400;
     var ctx_wave = c_wave.getContext("2d");
     ctx_wave.fillStyle = "#ec8b6d";
     ctx_wave.lineWidth = 1;
@@ -29,9 +29,9 @@ $(document).ready(function () {
 
     $(window).resize(function () {
         $("#wave_canvas").css("width", $("#if_you").width());
-        $("#wave_canvas").css("height", '300px');
+        $("#wave_canvas").css("height", '400px');
         c_wave.width = $("#if_you").width();
-        c_wave.height = 300;
+        c_wave.height = 400;
         default_x = c_wave.width / 2;
         default_y = c_wave.height / 2;
     });
@@ -45,7 +45,7 @@ $(document).ready(function () {
         ctx_wave.clearRect(0, 0, c_wave.width, c_wave.height);
 
         ctx_wave.beginPath();
-        ctx_wave.rect(0, 0, $("#if_you").width(), 300);
+        ctx_wave.rect(0, 0, $("#if_you").width(), 400);
         ctx_wave.fillStyle = "rgb(81, 13, 129)";
         ctx_wave.fill();
         ctx_wave.closePath();

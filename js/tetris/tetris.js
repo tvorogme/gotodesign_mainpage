@@ -138,7 +138,7 @@ $(document).ready(function () {
         game_field.push(tmp);
         game_freezed.push(tmp);
     }
-
+    tetris_context.lineWidth = 4;
     tetris_context.arc(W / 2, H / 2 + 20, 180, 0, 2 * Math.PI, false);
     tetris_context.strokeStyle = '#080808';
     tetris_context.stroke();
@@ -377,8 +377,8 @@ function start_tetris() {
                 rotate = -30 * Math.PI / 180;
                 break;
             case 4:
-                start_y = [start_y + BLOCK_H/2+ 15, start_y + 1.5*BLOCK_H + 15];
-                start_x = [start_x + BLOCK_W + 10, start_x + BLOCK_W ];
+                start_y = [start_y + BLOCK_H / 2 + 15, start_y + 1.5 * BLOCK_H + 15];
+                start_x = [start_x + BLOCK_W + 10, start_x + BLOCK_W];
                 break;
             case 5:
                 break;

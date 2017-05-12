@@ -37,7 +37,7 @@ function next_up() {
 }
 
 function set_position() {
-    $('#wave_canvas').css('top',$('.left').position().top + 40);
+    $('#wave_canvas').css('top',$('.left').position().top + 100);
     $('#wave_canvas').css('left',$('.left').position().left)
 
 }
