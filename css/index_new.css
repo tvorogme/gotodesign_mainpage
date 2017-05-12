@@ -715,13 +715,20 @@ body {
     padding-top: 1px;
 }
 
-.tetris p {
+#we-teach {
     text-align: center;
     z-index: 100;
     position: relative;
     top: calc(-300px - 5rem);
-    width: 250px;
+    width: 350px;
+    height: 300px;
     margin: 0 auto;
+    cursor: pointer;
+}
+
+#we-teach table{
+    width: 100%;
+    height: 100%;
 }
 
 #what_we_do {

@@ -305,7 +305,7 @@ function ntcool(i) {
 }
 
 function awesome() {
-    $('.opisanie').toggle().css('bottom', '').css('height', '305');
+    $('.opisanie').toggle().css('bottom', '').css('height', '320');
     $('.robot-text').css('display', 'none');
     $('.programm-text').css('display', 'none');
     $('.ad-text').css('display', 'none');

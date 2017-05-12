@@ -91,7 +91,17 @@
         <tr>
             <td valign="middle">
                 <canvas id="tetris"></canvas>
-                <p><a onclick="start_tetris()" id="what_we_do">Чему мы <br> учим?</a></p>
+                <div onclick="start_tetris()" id="we-teach">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td valign="middle">
+                                <a onclick="start_tetris()" id="what_we_do">Чему мы <br> учим?</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </td>
         </tr>
         </tbody>
@@ -218,7 +228,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div onclick="ntcool(2)" class="up flip-container col-md-4">
+                        <div onclick="cool(2)" class="up flip-container col-md-4">
                             <div class="flipper">
                                 <div class="front ad">
                                     <table>
@@ -246,7 +256,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div onclick="cool(0)" class="down flip-container col-md-4">
+                        <div onclick="ntcool(0)" class="down flip-container col-md-4">
                             <div class="flipper">
                                 <div class="front robot">
                                     <table>
@@ -260,7 +270,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div onclick="cool(1)" class="down flip-container vertical col-md-4">
+                        <div onclick="ntcool(1)" class="down flip-container vertical col-md-4">
                             <div class="flipper">
                                 <div class="front programm">
                                     <table>
@@ -321,7 +331,7 @@
                         Школа
                     </div>
 
-                    <div style="    margin-bottom: 0;" class="take_part_in ad">
+                    <div style="margin-bottom: 0;" class="take_part_in ad">
                         Курсы
                     </div>
                 </td>
@@ -472,7 +482,7 @@
 
 
                                     <textarea rows="1" id="question-footer-question"
-                                              placeholder="Вопрос"></textarea><br>
+                                              placeholder="Задавайте любой"></textarea><br>
 
                                     <input value="Отправить" type="submit">
                                     <div id="pseudo-helper-kostil"></div>
@@ -483,7 +493,8 @@
                             <div class="right">
 
                                 <h2>Контакты</h2><br>
-                                <p id="phone-email"><a>+7 (985) 244-32-26</a> / <a>school@goto.msk.ru</a></p><br>
+                                <p id="phone-email"><a href="tel:89852443226">+7 (985) 244-32-26</a> / <a
+                                        href="mailto:school@goto.msk.ru">school@goto.msk.ru</a></p><br>
                                 <p>Образовательный проект, посвященный проектной деятельности в различных
                                     высокотехнологических областях. Использование визуальных материалов только с
                                     согласия
