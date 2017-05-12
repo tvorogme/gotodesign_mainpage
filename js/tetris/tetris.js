@@ -1,5 +1,6 @@
 var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tetris_context, W, H,
     tetris_first_interval, tetris_first_param;
+var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
 var step_time = 100;
@@ -141,21 +142,24 @@ $(document).ready(function () {
     }
     tetris_first_param = {'rad': 180};
     tetris_first_interval = window.setInterval(function () {
-        tetris_context.clearRect(0, 0, W, H);
-        tetris_context.beginPath();
-        tetris_context.lineWidth = 4;
-        tetris_context.arc(W / 2 - 5, H / 2 + 90, tetris_first_param['rad'], 0, 2 * Math.PI, false);
-        tetris_context.strokeStyle = '#080808';
-        tetris_context.stroke();
-        tetris_context.closePath();
+        if (!lock_first_interval) {
+            tetris_context.clearRect(0, 0, W, H);
+            tetris_context.beginPath();
+            tetris_context.lineWidth = 4;
+            tetris_context.arc(W / 2 - 5, H / 2 + 90, tetris_first_param['rad'], 0, 2 * Math.PI, false);
+            tetris_context.strokeStyle = '#080808';
+            tetris_context.stroke();
+            tetris_context.closePath();
+        }
     }, 10);
 });
 
 
 function start_tetris() {
     window.clearInterval(tetris_first_interval);
+    lock_first_interval = true; // bugs of js
     tetris_context.clearRect(0, 0, W, H);
-    $("#what_we_do").toggle();
+    $("#we-teach").toggle();
 
     function reshape_block() {
         if (cur_shape + 1 === 1) {
