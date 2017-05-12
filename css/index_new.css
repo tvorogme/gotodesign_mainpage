@@ -254,17 +254,17 @@ body {
     margin-top: 60px;
 }
 
-.soc-footer a{
+.soc-footer a {
     text-decoration: none;
     color: white;
 }
 
-.soc-footer a:hover{
+.soc-footer a:hover {
     text-decoration: none;
     color: white;
 }
 
-.soc-footer i{
+.soc-footer i {
     font-size: 30px;
     margin-right: 15px;
 }
@@ -387,12 +387,12 @@ body {
     transform: rotate(90deg);
 }
 
-.hor-fix a{
+.hor-fix a {
     text-decoration: none;
     color: #080808;
 }
 
-.hor-fix a:hover{
+.hor-fix a:hover {
     text-decoration: none;
     color: #080808;
 }
@@ -1158,4 +1158,47 @@ a, button {
 
 .button-big-picture {
     letter-spacing: 1px !important;
+}
+
+#question-footer input {
+    background: rgba(0, 0, 0, 0);
+    font-size: 25px;
+    border: none;
+    color: white;
+    padding: 10px;
+}
+
+#question-footer input[type='text'] {
+    border-bottom: 1px solid white;
+}
+
+#question-footer input[type='submit'] {
+    margin-top: 30px;
+    border: 1px solid white;
+}
+
+#question-footer-question {
+    background: rgba(0, 0, 0, 0);
+    font-size: 25px;
+    border: none;
+    padding: 10px;
+    width: 397px;
+    border-bottom: 1px solid white;
+}
+
+#pseudo-helper-kostil{
+    height: 40px;
+}
+
+#question-footer input:-webkit-input-placeholder {
+  color: white;
+}
+#question-footer input:-moz-placeholder {
+  color: white;
+}
+#question-footer input:-ms-input-placeholder {
+  color: white;
+}
+#question-footer input:-moz-placeholder {
+  color: white;
 }

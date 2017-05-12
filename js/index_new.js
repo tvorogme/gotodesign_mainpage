@@ -37,8 +37,8 @@ function next_up() {
 }
 
 function set_position() {
-    $('#wave_canvas').css('top',$('.left').position().top + 100);
-    $('#wave_canvas').css('left',$('.left').position().left)
+    $('#wave_canvas').css('top', $('.left').position().top + 100);
+    $('#wave_canvas').css('left', $('.left').position().left)
 
 }
 function get_slide(n) {
@@ -313,7 +313,7 @@ function awesome() {
 }
 
 $(document).resize(function () {
-   set_position();
+    set_position();
 });
 
 setTimeout(function () {
@@ -322,3 +322,13 @@ setTimeout(function () {
         next_down();
     }
 }, 2000);
+
+$('#question-footer-question ').click(function () {
+    $(this).animate({
+        height: "100px"
+    }, 300);
+
+    $("#pseudo-helper-kostil").animate({
+       height: "0px"
+    }, 300);
+});
