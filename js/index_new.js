@@ -237,6 +237,7 @@ function onWheel(e) {
 }
 
 $(document).ready(function (ev) {
+    $("#question-footer-question").css('width', $('question-footer-email').width());
     set_position();
     var toggle = $('#ss_toggle');
     var menu = $('#ss_menu');
