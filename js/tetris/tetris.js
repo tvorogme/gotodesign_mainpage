@@ -3,7 +3,7 @@ var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tet
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
-var step_time = 400;
+var step_time = 350;
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -578,19 +578,18 @@ function start_tetris() {
 
 $('#we-teach').mouseenter(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 130,
+        rad: 150,
         ease: Power4.easeOut
     });
 }).mouseout(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 150,
+        rad: 130,
         ease: Power4.easeOut
     });
 });
 
 $('#we-teach a').mouseenter(function () {
     TweenLite.to(tetris_first_param, 2, {
-        rad: 150,
         rad: 150,
         ease: Power4.easeOut
     });

@@ -35,6 +35,7 @@ $("document").ready(function () {
         wait_time = 1;
     }
     $("#logo").ready(function () {
+        $('#logo').css('display', 'block');
         $("#o5").css('display', 'none');
 
 

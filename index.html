@@ -27,6 +27,12 @@
 <!--Красивые значки-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!--UI for navigation-->
+<script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+
 <!--Библиотеки-->
 <script src="js/menu/modernizr.custom.js"></script>
 <script src="js/mo.min.js"></script>
@@ -37,6 +43,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
+<!--Навигация-->
+<div class="dotstyle dotstyle-hop">
+    <ul>
+        <li class="current"><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+    </ul>
+</div>
+
 
 <!-- меню -->
 <nav id="bt-menu" class="bt-menu">
@@ -534,6 +552,8 @@ id="flowPara133"></flowPara></flowRoot>
     <div class="text">
         Образовательный проект в сфере высоких технологий
     </div>
+
+    <img onclick="get_slide(slide + 1);next_down();" id="in_helper" src="img/down_arrow.png" style="display: none;">
 </div>
 
 <!--Тетрис-->
@@ -796,7 +816,7 @@ id="flowPara133"></flowPara></flowRoot>
     <a id="but2">Стать<br>партнёром</a>
     <a onclick="take_part()" id="but3">Принять <br> участие</a>
     <a id="but4">Преподавать</a>
-    <a id="but5">Подробности<br>о проекте</a>
+    <a id="but5">О проекте</a>
     <a id="but6">Новости</a>
 </div>
 
@@ -831,7 +851,7 @@ id="flowPara133"></flowPara></flowRoot>
                             <div class="right">
                                 <div id="cool-right">
                                     <h2>Контакты</h2><br>
-                                    <p id="phone-email"><a href="tel:89852443226">+7 (985) 244-32-26</a> / <a
+                                    <p id="phone-email"><a href="tel:89852443226">+7 (985) 244-32-26</a><br> <a
                                             href="mailto:school@goto.msk.ru">school@goto.msk.ru</a></p><br>
                                     <p>Образовательный проект, посвященный проектной деятельности в различных
                                         высокотехнологических областях. Использование визуальных материалов только с
@@ -896,12 +916,25 @@ id="flowPara133"></flowPara></flowRoot>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css">
 
+
+<!--Навигация-->
+<script src="js/navigation/modernizr.min.js"></script>
+<script src="js/navigation/dots.js"></script>
+
 <script>
     $('.slick').slick({
         slidesToShow: 5,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000
+    });
+
+    [].slice.call(document.querySelectorAll('.dotstyle > ul')).forEach(function (nav) {
+        new DotNav(nav, {
+            callback: function (idx) {
+                //console.log( idx )
+            }
+        });
     });
 </script>
 </body>

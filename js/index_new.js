@@ -2,7 +2,7 @@ var up = 0;
 var down = 0;
 var slide = 0;
 
-var slide_speed = 500;
+var slide_speed = 300;
 
 var lock = false;
 
@@ -54,7 +54,9 @@ function get_slide(n) {
         }
 
         else if (n == 1) {
+            $(".dotstyle li:eq(0)").click();
             $("#demo-canvas").css('display', 'block');
+            $("#in_helper").css('display', 'block');
 
             lock = true;
             if ($('#logo').width() != 300) {
@@ -82,6 +84,7 @@ function get_slide(n) {
         }
 
         else if (n == 2) {
+            $(".dotstyle li:eq(1)").click();
             lock = true;
 
             if ($('.krutyashki').position().top != 0) {
@@ -114,6 +117,7 @@ function get_slide(n) {
         }
 
         else if (n == 3) {
+            $(".dotstyle li:eq(2)").click();
             lock = true;
 
             if ($('.button-big-picture').position().top != 0) {
@@ -144,6 +148,19 @@ function get_slide(n) {
             }
         }
         else if (n == 4) {
+            $(".dotstyle li:eq(3)").click();
+            // $(".dotstyle li a").animate({
+            //     backgroundColor: '#080808'
+            // }, 100);
+
+            // $(".dotstyle-hop li a::after").animate({
+            //     backgroundColor: '#080808'
+            // }, 100);
+
+            $(".dotstyle-hop li a").animate({
+                borderColor: '#080808'
+            }, 100);
+
             lock = true;
 
             setTimeout(function () {
@@ -176,6 +193,21 @@ function get_slide(n) {
             }, slide_speed + 200);
         }
         else if (n == 5) {
+            $(".dotstyle li a").animate({
+                backgroundColor: 'white'
+            }, 200);
+
+            $(".dotstyle-hop li a::after").animate({
+               backgroundColor: 'rgb(67, 180, 152)'
+            }, 200);
+
+            $(".dotstyle-hop li a").animate({
+                borderColor: 'white'
+            }, 200);
+
+            lock = true;
+
+            $(".dotstyle li:eq(4)").click();
             lock = true;
 
             $('.button-big-picture').animate({
@@ -324,7 +356,7 @@ setTimeout(function () {
         get_slide(1);
         next_down();
     }
-}, 2500);
+}, 3000);
 
 $('#question-footer-question ').click(function () {
     $(this).animate({

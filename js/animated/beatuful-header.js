@@ -37,12 +37,12 @@ function range(start, stop, step) {
     addListeners();
 
     function initHeader() {
-        width = window.innerWidth;
+        width = window.innerWidth - 50;
         height = window.innerHeight;
         target = {x: width, y: height};
 
         largeHeader = document.getElementById('large-header');
-        largeHeader.style.height = height + 'px';
+        largeHeader.style.height = height  + 'px';
 
         canvas = document.getElementById('demo-canvas');
         canvas.width = width;

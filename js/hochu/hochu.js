@@ -161,8 +161,8 @@ function rad() {
 
                 TweenLite.to(cool_clas, 2, {
                     r4: 90,
-                    x5: $('#but5').position().left + 88, // подробности о проекте
-                    y5: $('#but5').position().top + 57,
+                    x5: $('#but5').position().left + 85, // подробности о проекте
+                    y5: $('#but5').position().top + 50,
                     ease: Power4.easeOut,
                     onCompleteParams: rad4()
                 });
