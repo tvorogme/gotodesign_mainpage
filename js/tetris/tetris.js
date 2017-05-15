@@ -3,7 +3,7 @@ var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tet
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
-var step_time = 350;
+var step_time = 100;//350;
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -371,7 +371,7 @@ function start_tetris() {
         tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
     }
 
-    var texts = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    var texts = ['программирование', 'робототехника', ['машинное','обучение'], ['AR','VR'], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
     function get_text_coors() {
         var start_x = cur_X * BLOCK_W;
@@ -388,8 +388,8 @@ function start_tetris() {
                 start_y += BLOCK_H + BLOCK_H / 2 + 15;
                 break;
             case 2:
-                start_x += BLOCK_W - tetris_context.measureText(texts[2]).width / 2;
-                start_y += BLOCK_H + 15;
+                start_x = [start_x + BLOCK_W - tetris_context.measureText(texts[2][0]).width/2, start_x + BLOCK_W - tetris_context.measureText(texts[2][1]).width/2];
+                start_y = [start_y + BLOCK_H - 15, start_y + BLOCK_H + 20];
                 break;
             case 3:
                 start_y += 2 * BLOCK_H - tetris_context.measureText(texts[2]).width / 4;
