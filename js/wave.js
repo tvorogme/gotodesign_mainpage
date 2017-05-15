@@ -16,7 +16,6 @@ var now_animation = false;
 $(document).ready(function () {
     $(".right").css("height", $(".left").height());
     $("#wave_canvas").css("width", $("#if_you").width());
-    $("#wave_canvas").css("height", '430px');
 
     var c_wave = document.getElementById("wave_canvas");
     c_wave.width = $("#if_you").width();

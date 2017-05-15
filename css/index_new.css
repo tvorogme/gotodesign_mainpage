@@ -239,8 +239,8 @@ body {
 #wave_canvas {
     z-index: -1;
     position: absolute;
-    top: 0;
     left: 0;
+    height: 400px;
 }
 
 .left, .right {
@@ -251,7 +251,7 @@ body {
     display: block;
     z-index: 3;
     float: left;
-    margin-top: 60px;
+    padding-top: 50px;
 }
 
 .soc-footer a {
@@ -698,7 +698,7 @@ body {
 
 .cool_table {
     width: 100vw;
-    height: calc(100vh - 112px);
+    height: 100vh;
 }
 
 .footer-container {
@@ -1290,8 +1290,8 @@ textarea:focus {
 	display: block;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	width: 16px;
-	height: 16px;
+    width: 12px;
+    height: 12px;
 	cursor: pointer;
 }
 
@@ -1328,7 +1328,7 @@ textarea:focus {
 	left: 0;
 	border-radius: 50%;
 	visibility: hidden;
-	background: black;
+	background-color: black;
 	opacity: 0;
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);

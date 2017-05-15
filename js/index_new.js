@@ -37,8 +37,6 @@ function next_up() {
 }
 
 function set_position() {
-    $('#wave_canvas').css('top', $('.left').position().top + 100);
-    $('#wave_canvas').css('left', $('.left').position().left)
 
 }
 function get_slide(n) {
@@ -195,10 +193,6 @@ function get_slide(n) {
         else if (n == 5) {
             $(".dotstyle li a").animate({
                 backgroundColor: 'white'
-            }, 200);
-
-            $(".dotstyle-hop li a::after").animate({
-               backgroundColor: 'rgb(67, 180, 152)'
             }, 200);
 
             $(".dotstyle-hop li a").animate({
