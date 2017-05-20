@@ -3,7 +3,7 @@ var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tet
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
-var step_time = 100;//350;
+var step_time = 350;
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -371,7 +371,9 @@ function start_tetris() {
         tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
     }
 
-    var texts = ['программирование', 'робототехника', ['машинное','обучение'], ['AR','VR'], '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    var texts = ['программирование', 'робототехника', ['машинное', 'обучение'], ['AR', 'VR'], ['soft', 'skills'], 'блокчейн',
+        'биоинформатика', 'алгоритмы', ['интернет', 'вещей'], ['данных', 'базы'], ['критическое', 'мышление'], ['веб', 'сервисы'], 'предпринимательство', 'моб. приложения',
+        ['чат -', 'боты'], 'нейроинтерфейсы', ['инфо-', 'безопасность'], 'промдизайн', '', '', '', '', '', '', ''];
 
     function get_text_coors() {
         var start_x = cur_X * BLOCK_W;
@@ -381,50 +383,104 @@ function start_tetris() {
         switch (cur_text_id) {
             case 0:
                 start_x += 2 * BLOCK_W - tetris_context.measureText(texts[0]).width / 2;
-                start_y += BLOCK_H / 2 + 15;
+                start_y += BLOCK_H / 2 + 13;
                 break;
             case 1:
                 start_x += 1.5 * BLOCK_W - tetris_context.measureText(texts[1]).width / 2;
-                start_y += BLOCK_H + BLOCK_H / 2 + 15;
+                start_y += BLOCK_H + BLOCK_H / 2 + 13;
                 break;
             case 2:
-                start_x = [start_x + BLOCK_W - tetris_context.measureText(texts[2][0]).width/2, start_x + BLOCK_W - tetris_context.measureText(texts[2][1]).width/2];
-                start_y = [start_y + BLOCK_H - 15, start_y + BLOCK_H + 20];
+                start_x = [start_x + BLOCK_W - tetris_context.measureText(texts[2][0]).width / 2,
+                    start_x + BLOCK_W - tetris_context.measureText(texts[2][1]).width / 2];
+                start_y = [start_y + BLOCK_H - 13, start_y + BLOCK_H + 20];
                 break;
             case 3:
-                start_y += 2 * BLOCK_H - tetris_context.measureText(texts[2]).width / 4;
-                start_x += (tetris_context.measureText(texts[2]).width * (Math.sqrt(3) / 2)) / 2 - 10;
-                rotate = -30 * Math.PI / 180;
+                start_x = [start_x + 1.5 * BLOCK_W + tetris_context.measureText(texts[3][0]).width / 2,
+                    start_x + BLOCK_W / 2 + tetris_context.measureText(texts[3][1]).width / 2];
+                start_y = [start_y + BLOCK_H / 2 + 13, start_y + 1.5 * BLOCK_H + 13];
+                // rotate = -30 * Math.PI / 180;
                 break;
             case 4:
-                start_y = [start_y + BLOCK_H / 2 + 15, start_y + 1.5 * BLOCK_H + 15];
-                start_x = [start_x + BLOCK_W + 10, start_x + BLOCK_W];
+                start_x = [start_x + BLOCK_W / 2 + tetris_context.measureText(texts[4][0]).width / 2,
+                    start_x + 2 * BLOCK_W - tetris_context.measureText(texts[4][1]).width / 2];
+                start_y = [start_y + BLOCK_H / 2 + 13, start_y + 1.5 * BLOCK_H + 13];
                 break;
             case 5:
+                start_y += 2 * BLOCK_H + 13;
+                start_x += 1.5 * BLOCK_W + 13;
+                rotate = -90 * Math.PI / 180;
                 break;
             case 6:
+                start_x += 1.5 * BLOCK_W - tetris_context.measureText(texts[6]).width / 2;
+                start_y += 1.5 * BLOCK_H + 13;
                 break;
             case 7:
+                start_x += 1.5 * BLOCK_W - tetris_context.measureText(texts[7]).width / 2;
+                start_y += 1.5 * BLOCK_H + 13;
                 break;
+
+
             case 8:
+                start_x = [start_x + 0.5 * BLOCK_W + 13,
+                    start_x + 1.5 * BLOCK_W + 13];
+
+                start_y = [start_y + 2 * BLOCK_H + tetris_context.measureText(texts[8][0]).width / 2, start_y + BLOCK_H + tetris_context.measureText(texts[8][1]).width / 2];
+
+                rotate = -90 * Math.PI / 180;
+                rotate = [rotate, rotate];
                 break;
             case 9:
+                start_x = [start_x + 1.5 * BLOCK_W + 13,start_x + 0.5 * BLOCK_W + 13];
+
+                start_y = [start_y + 2 * BLOCK_H + tetris_context.measureText(texts[9][0]).width / 2, start_y + BLOCK_H + tetris_context.measureText(texts[9][1]).width / 2];
+
+                rotate = -90 * Math.PI / 180;
+                rotate = [rotate, rotate];
                 break;
+
+
             case 10:
+                start_x = [start_x + 1.5 * BLOCK_W - tetris_context.measureText(texts[10][0]).width / 2,
+                    start_x + 1.5 * BLOCK_W - tetris_context.measureText(texts[10][1]).width / 2];
+
+                start_y = [start_y + 1.5 * BLOCK_H - 13, start_y + 1.5 * BLOCK_H + 20];
                 break;
             case 11:
+                start_x = [start_x + 0.5 * BLOCK_W + 13,
+                    start_x + 1.5 * BLOCK_W + 13];
+
+                start_y = [start_y + 2 * BLOCK_H + tetris_context.measureText(texts[11][0]).width / 2, start_y + BLOCK_H + tetris_context.measureText(texts[11][1]).width / 2];
+
+                rotate = -90 * Math.PI / 180;
+                rotate = [rotate, rotate];
                 break;
             case 12:
+                start_y += 1.5 * BLOCK_H + 13;
+                start_x += 1.5 * BLOCK_W - tetris_context.measureText(texts[12]).width / 2;
                 break;
             case 13:
+                start_y += 1.5 * BLOCK_H + tetris_context.measureText(texts[13]).width / 2;
+                start_x += 1.5 * BLOCK_W + 13;
+                rotate = -90 * Math.PI / 180;
                 break;
             case 14:
+                start_x = [start_x + BLOCK_W / 2 + tetris_context.measureText(texts[14][0]).width / 2,
+                    start_x + 2 * BLOCK_W - tetris_context.measureText(texts[14][1]).width / 2];
+                start_y = [start_y + BLOCK_H / 2 + 13, start_y + 1.5 * BLOCK_H + 13];
                 break;
             case 15:
+                start_x += 2 * BLOCK_W - tetris_context.measureText(texts[15]).width / 2;
+                start_y += BLOCK_H / 2 + 13;
                 break;
             case 16:
+                start_x = [start_x + BLOCK_W - tetris_context.measureText(texts[16][0]).width / 2,
+                    start_x + BLOCK_W - tetris_context.measureText(texts[16][1]).width / 2];
+                start_y = [start_y + BLOCK_H - 13, start_y + BLOCK_H + 20];
                 break;
             case 17:
+                start_y += 2 * BLOCK_H + 25;
+                start_x += 1.5 * BLOCK_W + 13;
+                rotate = -90 * Math.PI / 180;
                 break;
             case 18:
                 break;
@@ -485,7 +541,7 @@ function start_tetris() {
             }
         }
 
-        tetris_context.font = "30px Ubuntu";
+        tetris_context.font = "26px Ubuntu";
         tetris_context.fillStyle = "white";
         tetris_context.textAlign = "left";
 
@@ -505,8 +561,22 @@ function start_tetris() {
                     tetris_context.restore();
                 }
             } else {
-                tetris_context.fillText(saved_text[t][0][0], saved_text[t][1][0], saved_text[t][2][0]);
-                tetris_context.fillText(saved_text[t][0][1], saved_text[t][1][1], saved_text[t][2][1]);
+                if (saved_text[t][3]) {
+                    tetris_context.save();
+                    tetris_context.translate(saved_text[t][1][0], saved_text[t][2][0]);
+                    tetris_context.rotate(saved_text[t][3][0]);
+                    tetris_context.fillText(saved_text[t][0][0], 0, 0);
+                    tetris_context.restore();
+
+                    tetris_context.save();
+                    tetris_context.translate(saved_text[t][1][1], saved_text[t][2][1]);
+                    tetris_context.rotate(saved_text[t][3][1]);
+                    tetris_context.fillText(saved_text[t][0][1], 0, 0);
+                    tetris_context.restore()
+                } else {
+                    tetris_context.fillText(saved_text[t][0][0], saved_text[t][1][0], saved_text[t][2][0]);
+                    tetris_context.fillText(saved_text[t][0][1], saved_text[t][1][1], saved_text[t][2][1]);
+                }
             }
         }
 
@@ -527,8 +597,23 @@ function start_tetris() {
                 tetris_context.fillText(cur_text, text_X, text_Y);
             }
         } else {
-            tetris_context.fillText(cur_text[0], text_X[0], text_Y[0]);
-            tetris_context.fillText(cur_text[1], text_X[1], text_Y[1]);
+            if (rotate) {
+                tetris_context.save();
+                tetris_context.translate(text_X[0], text_Y[0]);
+                tetris_context.rotate(rotate[0]);
+                tetris_context.fillText(cur_text[0], 0, 0);
+                tetris_context.restore();
+
+                tetris_context.save();
+                tetris_context.translate(text_X[1], text_Y[1]);
+                tetris_context.rotate(rotate[1]);
+                tetris_context.fillText(cur_text[1], 0, 0);
+                tetris_context.restore()
+            } else {
+                tetris_context.fillText(cur_text[0], text_X[0], text_Y[0]);
+                tetris_context.fillText(cur_text[1], text_X[1], text_Y[1]);
+            }
+
         }
 
     }
