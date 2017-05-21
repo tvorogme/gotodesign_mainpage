@@ -117,6 +117,9 @@ var positions = [4, 8, 0, 2, 4, 10, 0, 2, 9, 6, 7, 1, 9, 4, 6, 8, 3, -1];
 var colors = [1, 3, 1, 2, 4, 4, 3, 1, 1, 2, 4, 4, 3, 3, 2, 1, 2, 1];
 var colors_meta = ["", "rgb(255, 140, 102)", "rgb(81, 13, 129)", "rgb(67, 180, 152)", "rgb(238, 229, 58)"];
 
+var texts = ['программирование', 'робототехника', ['машинное', 'обучение'], ['AR', 'VR'], ['soft', 'skills'], 'блокчейн',
+    'биоинформатика', 'алгоритмы', ['интернет', 'вещей'], ['данных', 'базы'], ['критическое', 'мышление'], ['веб', 'сервисы'], 'предпринимательство', 'моб. приложения',
+    ['чат -', 'боты'], 'нейроинтерфейсы', ['инфо-', 'безопасность'], 'промдизайн', '', '', '', '', '', '', ''];
 var cur_shape = 1;
 
 $(document).ready(function () {
@@ -352,9 +355,12 @@ function start_tetris() {
             if (b !== 0) {
                 saved_text.push([texts[cur_text_id], text_X, text_Y, rotate]);
             }
+            
+
             if (valid(positions[b], 0, qubes[b])) {
                 step([qubes[b], count_blocks[b]], positions[b], colors[b], texts[b]);
             }
+
             cur_text_id = b;
             b++;
 
@@ -370,10 +376,6 @@ function start_tetris() {
         tetris_context.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
         tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
     }
-
-    var texts = ['программирование', 'робототехника', ['машинное', 'обучение'], ['AR', 'VR'], ['soft', 'skills'], 'блокчейн',
-        'биоинформатика', 'алгоритмы', ['интернет', 'вещей'], ['данных', 'базы'], ['критическое', 'мышление'], ['веб', 'сервисы'], 'предпринимательство', 'моб. приложения',
-        ['чат -', 'боты'], 'нейроинтерфейсы', ['инфо-', 'безопасность'], 'промдизайн', '', '', '', '', '', '', ''];
 
     function get_text_coors() {
         var start_x = cur_X * BLOCK_W;
@@ -430,7 +432,7 @@ function start_tetris() {
                 rotate = [rotate, rotate];
                 break;
             case 9:
-                start_x = [start_x + 1.5 * BLOCK_W + 13,start_x + 0.5 * BLOCK_W + 13];
+                start_x = [start_x + 1.5 * BLOCK_W + 13, start_x + 0.5 * BLOCK_W + 13];
 
                 start_y = [start_y + 2 * BLOCK_H + tetris_context.measureText(texts[9][0]).width / 2, start_y + BLOCK_H + tetris_context.measureText(texts[9][1]).width / 2];
 
@@ -542,7 +544,7 @@ function start_tetris() {
         }
 
         tetris_context.font = "26px Ubuntu";
-        tetris_context.fillStyle = "white";
+        tetris_context.fillStyle = "red";
         tetris_context.textAlign = "left";
 
 
@@ -577,6 +579,7 @@ function start_tetris() {
                     tetris_context.fillText(saved_text[t][0][0], saved_text[t][1][0], saved_text[t][2][0]);
                     tetris_context.fillText(saved_text[t][0][1], saved_text[t][1][1], saved_text[t][2][1]);
                 }
+
             }
         }
 
