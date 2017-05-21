@@ -1,10 +1,16 @@
 var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tetris_context, W, H,
-    tetris_first_interval, tetris_first_param, playing;
-var score = 0;
+    tetris_first_interval, tetris_first_param, playing, need_row;
+var score = 0, offset = 0;
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
 var step_time = 350;
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
 var shapes = [
     [[1, 1, 1, 1],
         [0, 0, 0, 0],
@@ -366,27 +372,86 @@ function start_tetris() {
                 cur_text_id = b;
             }
 
-            while (playing && $.inArray(0, game_freezed[rows - 1]) === -1) {
-                for (var i = 0; i < game_freezed[rows - 1].length; i++) {
-                    score += game_freezed[rows - 1][i] << 0;
+            if (playing) {
+                need_row = 0;
+
+                while (need_row !== -1) {
+                    need_row = -1;
+
+                    for (var tt = 0; tt < rows; tt++) {
+                        if ($.inArray(0, game_freezed[tt]) === -1) {
+                            need_row = tt;
+                            break;
+                        }
+                    }
+                    if (need_row !== -1) {
+                        for (var hh = 0; hh < game_freezed[need_row].length; hh++) {
+                            score += game_freezed[need_row][hh] << 0;
+                        }
+                        game_freezed.splice(need_row, 1);
+                        game_freezed.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+                        saved_text = [];
+                    }
                 }
-                game_freezed.splice(rows - 1, 1);
-                game_freezed.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-                saved_text = [];
             }
 
             b++;
+
+
             if (b >= count_blocks.length) {
                 window.clearInterval(lol);
+                step_time += 100;
+
+                if (playing) {
+                    setTimeout(function () {
+                        var gaming = setInterval(function () {
+                            if (lock_tetris === false) {
+                                offset = 3;
+                                saved_text = [];
+                                cur_text_id = 20;
+                                cur_text = "";
+                                var rand_block = getRandomInt(0, 6);
+                                var rand_pos = getRandomInt(0, cols - 1);
+                                var rand_color = getRandomInt(1, 4);
+
+                                if (valid(rand_pos, 0, shapes[rand_block])) {
+                                    step([shapes[rand_block], rand_block], rand_pos, rand_color, "");
+                                }
+
+                                need_row = 0;
+
+                                while (need_row !== -1) {
+                                    need_row = -1;
+
+                                    for (var tt = 0; tt < rows; tt++) {
+                                        if ($.inArray(0, game_freezed[tt]) === -1) {
+                                            need_row = tt;
+                                            break;
+                                        }
+                                    }
+                                    if (need_row !== -1) {
+                                        for (var hh = 0; hh < game_freezed[need_row].length; hh++) {
+                                            score += game_freezed[need_row][hh] << 0;
+                                        }
+                                        game_freezed.splice(need_row, 1);
+                                        game_freezed.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+                                    }
+                                }
+                            }
+
+                        }, step_time);
+                    }, 2 * step_time);
+                }
             }
         }
     }, step_time);
 
+
     var BLOCK_W = W / cols, BLOCK_H = H / rows;
 
     function drawBlock(x, y) {
-        tetris_context.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
-        tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W, BLOCK_H);
+        tetris_context.fillRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - offset, BLOCK_H - offset);
+        tetris_context.strokeRect(BLOCK_W * x, BLOCK_H * y, BLOCK_W - offset, BLOCK_H - offset);
     }
 
     function get_text_coors() {
