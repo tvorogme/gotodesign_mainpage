@@ -1,5 +1,6 @@
 var block, now_color, block_id, cur_text, cur_text_id, saved_text, c_tetris, tetris_context, W, H,
-    tetris_first_interval, tetris_first_param;
+    tetris_first_interval, tetris_first_param, playing;
+var score = 0;
 var lock_first_interval = false;
 var game_field = [], game_freezed = [];
 var rows = 6, cols = 12;
@@ -121,6 +122,7 @@ var texts = ['программирование', 'робототехника', [
     'биоинформатика', 'алгоритмы', ['интернет', 'вещей'], ['данных', 'базы'], ['критическое', 'мышление'], ['веб', 'сервисы'], 'предпринимательство', 'моб. приложения',
     ['чат -', 'боты'], 'нейроинтерфейсы', ['инфо-', 'безопасность'], 'промдизайн', '', '', '', '', '', '', ''];
 var cur_shape = 1;
+
 
 $(document).ready(function () {
     saved_text = [];
@@ -361,8 +363,16 @@ function start_tetris() {
 
             if (valid(positions[b], 0, qubes[b])) {
                 step([qubes[b], count_blocks[b]], positions[b], colors[b], texts[b]);
-                console.log(cur_text_id);
                 cur_text_id = b;
+            }
+
+            while (playing && $.inArray(0, game_freezed[rows - 1]) === -1) {
+                for (var i = 0; i < game_freezed[rows - 1].length; i++) {
+                    score += game_freezed[rows - 1][i] << 0;
+                }
+                game_freezed.splice(rows - 1, 1);
+                game_freezed.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+                saved_text = [];
             }
 
             b++;
@@ -623,6 +633,7 @@ function start_tetris() {
     setInterval(render, 30);
 
     function keyPress(key) {
+        playing = true;
         switch (key) {
             case 'left':
                 if (valid(cur_X - 1, cur_Y, block) && lock_tetris) {
