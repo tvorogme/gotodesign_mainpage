@@ -318,6 +318,10 @@ function start_tetris() {
         now_color = colors[color];
         if (!lock_tetris) {
             game_freezed = game_field;
+            if (cur_text_id && cur_Y >= 0) {
+                console.log(cur_Y, texts[cur_text_id][0], cur_text_id, texts[cur_text_id]);
+                saved_text.push([texts[cur_text_id], text_X, text_Y, rotate]);
+            }
         }
 
         clear_game();
@@ -352,18 +356,14 @@ function start_tetris() {
     var b = 0;
     var lol = setInterval(function () {
         if (lock_tetris === false) {
-            if (b !== 0) {
-                saved_text.push([texts[cur_text_id], text_X, text_Y, rotate]);
-            }
-            
 
             if (valid(positions[b], 0, qubes[b])) {
                 step([qubes[b], count_blocks[b]], positions[b], colors[b], texts[b]);
+                console.log(cur_text_id);
+                cur_text_id = b;
             }
-
-            cur_text_id = b;
+            
             b++;
-
             if (b >= count_blocks.length) {
                 window.clearInterval(lol);
             }
@@ -400,7 +400,6 @@ function start_tetris() {
                 start_x = [start_x + 1.5 * BLOCK_W + tetris_context.measureText(texts[3][0]).width / 2,
                     start_x + BLOCK_W / 2 + tetris_context.measureText(texts[3][1]).width / 2];
                 start_y = [start_y + BLOCK_H / 2 + 13, start_y + 1.5 * BLOCK_H + 13];
-                // rotate = -30 * Math.PI / 180;
                 break;
             case 4:
                 start_x = [start_x + BLOCK_W / 2 + tetris_context.measureText(texts[4][0]).width / 2,
@@ -421,7 +420,6 @@ function start_tetris() {
                 start_y += 1.5 * BLOCK_H + 13;
                 break;
 
-
             case 8:
                 start_x = [start_x + 0.5 * BLOCK_W + 13,
                     start_x + 1.5 * BLOCK_W + 13];
@@ -439,7 +437,6 @@ function start_tetris() {
                 rotate = -90 * Math.PI / 180;
                 rotate = [rotate, rotate];
                 break;
-
 
             case 10:
                 start_x = [start_x + 1.5 * BLOCK_W - tetris_context.measureText(texts[10][0]).width / 2,
@@ -641,7 +638,8 @@ function start_tetris() {
                 break;
 
             case 'rotate':
-                if (valid(cur_X, cur_Y + 1, reshape_block())) {
+                if (valid(cur_X + 1, cur_Y + 1, reshape_block())) {
+                    texts[cur_text_id] = "";
                     block = reshape_block();
                     add_shape();
                 }
