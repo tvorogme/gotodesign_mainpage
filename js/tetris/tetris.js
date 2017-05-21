@@ -318,8 +318,10 @@ function start_tetris() {
         now_color = colors[color];
         if (!lock_tetris) {
             game_freezed = game_field;
-            if (cur_text_id && cur_Y >= 0) {
-                console.log(cur_Y, texts[cur_text_id][0], cur_text_id, texts[cur_text_id]);
+            if (cur_Y >= 0) {
+                if (cur_text_id === undefined) {
+                    cur_text_id = 0;
+                }
                 saved_text.push([texts[cur_text_id], text_X, text_Y, rotate]);
             }
         }
@@ -362,7 +364,7 @@ function start_tetris() {
                 console.log(cur_text_id);
                 cur_text_id = b;
             }
-            
+
             b++;
             if (b >= count_blocks.length) {
                 window.clearInterval(lol);
@@ -541,7 +543,7 @@ function start_tetris() {
         }
 
         tetris_context.font = "26px Ubuntu";
-        tetris_context.fillStyle = "red";
+        tetris_context.fillStyle = "white";
         tetris_context.textAlign = "left";
 
 
@@ -640,6 +642,7 @@ function start_tetris() {
             case 'rotate':
                 if (valid(cur_X + 1, cur_Y + 1, reshape_block())) {
                     texts[cur_text_id] = "";
+                    cur_text = "";
                     block = reshape_block();
                     add_shape();
                 }
