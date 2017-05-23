@@ -305,7 +305,7 @@ function start_tetris() {
 
             for (var g = 0; g < 4; g++) {
                 if (block[r][g] && game_freezed[Y + r][X + g]
-                    || block[r][g] && X + g > cols
+                    || block[r][g] && X + g >= cols
                     || block[r][g] && X + g < 0) {
                     return false;
                 }

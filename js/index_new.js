@@ -5,6 +5,7 @@ var slide = 0;
 var slide_speed = 300;
 
 var lock = false;
+var boom_timer;
 
 function getRandom(min, max) {
     return Math.random() * (max - min) + min;
@@ -115,6 +116,7 @@ function get_slide(n) {
         }
 
         else if (n == 3) {
+            window.clearTimeout(boom_timer);
             $(".dotstyle li:eq(2)").click();
             lock = true;
 
@@ -161,7 +163,7 @@ function get_slide(n) {
 
             lock = true;
 
-            setTimeout(function () {
+            boom_timer = setTimeout(function () {
                 if (!locker) {
                     $("#component-2").click();
                 }
@@ -191,6 +193,7 @@ function get_slide(n) {
             }, slide_speed + 200);
         }
         else if (n == 5) {
+            window.clearTimeout(boom_timer);
             $(".dotstyle li a").animate({
                 backgroundColor: 'white'
             }, 200);

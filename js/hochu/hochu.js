@@ -4,7 +4,7 @@ var draw_interval;
 cool_clas['main_r'] = 130;
 
 $('#component-2').mouseenter(function () {
-    if (locked_f == false) {
+    if (locked_f === false) {
         TweenLite.to(cool_clas, 2, {
             main_r: 150,
             ease: Power4.easeOut
@@ -12,7 +12,7 @@ $('#component-2').mouseenter(function () {
     }
 });
 $('#want').mouseenter(function () {
-    if (locked_f == false) {
+    if (locked_f === false) {
         TweenLite.to(cool_clas, 2, {
             main_r: 150,
             ease: Power4.easeOut
@@ -20,7 +20,7 @@ $('#want').mouseenter(function () {
     }
 });
 $('#component-2').mouseout(function () {
-    if (locked_f == false) {
+    if (locked_f === false) {
         TweenLite.to(cool_clas, 2, {
             main_r: 130,
             ease: Power4.easeOut
@@ -188,8 +188,8 @@ function rad() {
 
     TweenLite.to(cool_clas, 2, {
         r1: 60,
-        x2: $('#but2').position().left + 113, // стать партнёром
-        y2: $('#but2').position().top + 80,
+        x2: $('#but2').position().left + 105, // партнёры
+        y2: $('#but2').position().top + 60,
         ease: Power4.easeOut,
         onCompleteParams: rad1()
     });
@@ -214,7 +214,7 @@ $("#component-2").click(function () {
 
 function start_shari() {
     hide_buttons();
-    top_position = $(".table-shar button").position().top  + 98;
+    top_position = $(".table-shar button").position().top + 98;
     left_position = $(".table-shar button").position().left + 98;
     width = $(".table-shar button").width();
     height = $(".table-shar button").height();
@@ -233,14 +233,14 @@ function start_shari() {
     function draw() {
         setInterval(function () {
             ctx.clearRect(0, 0, c.width, c.height);
-            if (step == 0) {
+            if (step === 0) {
                 ctx.lineWidth = 4;
                 ctx.beginPath();
                 ctx.arc(left_position + width / 2, top_position + height / 2, cool_clas['main_r'], 0, 2 * Math.PI, false);
                 ctx.strokeStyle = '#080808';
                 ctx.stroke();
                 ctx.closePath();
-            } else if (step == 1) {
+            } else if (step === 1) {
                 ctx.lineWidth = cool_clas["line_helper"];
                 ctx.beginPath();
                 ctx.moveTo(cool_clas["x4"], cool_clas["y4"]);
@@ -321,9 +321,9 @@ function start_shari() {
                 ctx.strokeStyle = 'rgb(81, 13, 129)';
                 ctx.stroke();
                 ctx.closePath();
-            } else if (step == 2) {
+            } else if (step === 2) {
                 ctx.lineWidth = cool_clas["line_helper"];
-            } else if (step == 3) {
+            } else if (step === 3) {
                 ctx.lineWidth = cool_clas["line_helper"];
                 ctx.beginPath();
                 ctx.arc($('#but3').position().left + 138, $('#but3').position().top + 110, cool_clas["r3"], 0, 2 * Math.PI, false);
@@ -333,7 +333,7 @@ function start_shari() {
                 ctx.stroke();
                 ctx.closePath();
 
-            } else if (step == 4) {
+            } else if (step === 4) {
                 ctx.lineWidth = cool_clas["line_helper"];
 
                 $('.take_part_in').each(function () {
@@ -352,6 +352,7 @@ function start_shari() {
                 ctx.strokeStyle = 'rgb(255, 140, 102)';
                 ctx.stroke();
                 ctx.closePath();
+            } else if (step === 5) {
 
             }
         }, 10);
@@ -361,7 +362,7 @@ function start_shari() {
 
 
     $('#but1').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r1: 80,
                 ease: Power4.easeOut
@@ -369,7 +370,7 @@ function start_shari() {
         }
     });
     $('#but1').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r1: 60,
                 ease: Power4.easeOut
@@ -379,7 +380,7 @@ function start_shari() {
 
 
     $('#but2').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r2: 120,
                 ease: Power4.easeOut
@@ -387,7 +388,7 @@ function start_shari() {
         }
     });
     $('#but2').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r2: 100,
                 ease: Power4.easeOut
@@ -397,7 +398,7 @@ function start_shari() {
 
 
     $('#but3').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r3: 140,
                 ease: Power4.easeOut
@@ -405,7 +406,7 @@ function start_shari() {
         }
     });
     $('#but3').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r3: 120,
                 ease: Power4.easeOut
@@ -415,7 +416,7 @@ function start_shari() {
 
 
     $('#but4').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r4: 110,
                 ease: Power4.easeOut
@@ -423,7 +424,7 @@ function start_shari() {
         }
     });
     $('#but4').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r4: 90,
                 ease: Power4.easeOut
@@ -433,7 +434,7 @@ function start_shari() {
 
 
     $('#but5').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r5: 88,
                 ease: Power4.easeOut
@@ -441,7 +442,7 @@ function start_shari() {
         }
     });
     $('#but5').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r5: 68,
                 ease: Power4.easeOut
@@ -451,7 +452,7 @@ function start_shari() {
 
 
     $('#but6').mouseenter(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r6: 90,
                 ease: Power4.easeOut
@@ -459,7 +460,7 @@ function start_shari() {
         }
     });
     $('#but6').mouseout(function () {
-        if (locked_f == false) {
+        if (locked_f === false) {
             TweenLite.to(cool_clas, 2, {
                 r6: 80,
                 ease: Power4.easeOut
@@ -488,7 +489,7 @@ $(".back-hochu").click(function () {
     if (!bask_locker) {
         bask_locker = true;
         cool_clas['line_helper'] = 0;
-        if (step == 1) {
+        if (step === 1) {
             hide_buttons();
             TweenLite.to(cool_clas, 2, {
                 ease: Power4.easeOut,
@@ -534,7 +535,7 @@ $(".back-hochu").click(function () {
 
         }
 
-        else if (step == 2) {
+        else if (step === 2) {
             $('#come_to_us_brother').toggle();
             step = 1;
             display_buttons();
@@ -542,7 +543,7 @@ $(".back-hochu").click(function () {
             bask_locker = false;
         }
 
-        else if (step == 4) {
+        else if (step === 4) {
             cool_clas["line_helper"] = 4;
             TweenLite.to(cool_clas, 2, {
                 ease: Power4.easeOut,
@@ -563,11 +564,19 @@ $(".back-hochu").click(function () {
                 bask_locker = false;
             }, 1000);
         }
+
+        else if (step === 5) {
+            step = 1;
+            display_buttons();
+            reset_radius();
+            bask_locker = false;
+            $('#partners_grid').toggle();
+        }
     }
 });
 
 function take_part() {
-    if (lock_click == false) {
+    if (lock_click === false) {
         locked_f = true;
 
         cool_clas['old_y'] = $('#but3').position().left;
@@ -601,8 +610,21 @@ function take_part() {
     }
 }
 
+function partners_grid() {
+    locked_f = true;
+    hide_radius(false);
+
+    setTimeout(function () {
+        step = 5;
+        hide_buttons();
+        locked_f = false;
+
+        $('#partners_grid').toggle();
+    }, 1000);
+}
+
 $('.input').keypress(function (e) {
-    if (e.which == 13 && step == 2) {
+    if (e.which === 13 && step === 2) {
         alert($('#come_to_us_brother input').val());
         $('#come_to_us_brother input').val('');
 
