@@ -2,7 +2,7 @@ var up = 0;
 var down = 0;
 var slide = 0;
 
-var slide_speed = 300;
+var slide_speed = 600;
 
 var lock = false;
 var boom_timer;
