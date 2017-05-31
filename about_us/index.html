@@ -15,54 +15,61 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
+    <script src="js/physicsjs-full.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PhysicsJS/0.7.0/bodies/rectangle.js"></script>
 </head>
 <body>
-<br><br><br>
-<div class="container">
-    <div class="row preps">
-        <div class="col-md-12">
-            <div id="alena" class="col-md-4">
-                <img src="preps/alena/001.jpg">
-            </div>
-            <div class="col-md-4"></div>
+<!--<div class="container">-->
+<!--<div class="row preps">-->
+<!--<div class="col-md-12">-->
+<!--<div id="alena" class="col-md-4">-->
+<!--<img src="preps/alena/001.jpg">-->
+<!--</div>-->
+<!--<div class="col-md-4"></div>-->
 
-            <div id="vanya" class="col-md-4">
-                <img src="preps/vanya_bib/001.jpg">
-            </div>
-        </div>
+<!--<div id="vanya" class="col-md-4">-->
+<!--<img src="preps/vanya_bib/001.jpg">-->
+<!--</div>-->
+<!--</div>-->
 
-        <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div id="sasha" class="col-md-4">
-                <img src="preps/Eg-Sasha/001.jpg">
-            </div>
-            <div class="col-md-4"></div>
-        </div>
+<!--<div class="col-md-12">-->
+<!--<div class="col-md-4"></div>-->
+<!--<div id="sasha" class="col-md-4">-->
+<!--<img src="preps/Eg-Sasha/001.jpg">-->
+<!--</div>-->
+<!--<div class="col-md-4"></div>-->
+<!--</div>-->
 
-        <div class="col-md-12">
-            <div id="kolya" class="col-md-4">
-                <img src="preps/kolya/001.jpg">
-            </div>
+<!--<div class="col-md-12">-->
+<!--<div id="kolya" class="col-md-4">-->
+<!--<img src="preps/kolya/001.jpg">-->
+<!--</div>-->
 
-            <div class="col-md-4"></div>
+<!--<div class="col-md-4"></div>-->
 
-            <div id="pasha" class="col-md-4">
-                <img src="preps/Pasha_Kulikov/001.jpg">
-            </div>
-        </div>
+<!--<div id="pasha" class="col-md-4">-->
+<!--<img src="preps/Pasha_Kulikov/001.jpg">-->
+<!--</div>-->
+<!--</div>-->
 
-        <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div id="roct" class="col-md-4">
-                <img src="preps/Roct1/001.jpg">
-            </div>
-            <div class="col-md-4"></div>
-        </div>
-    </div>
-</div>
+<!--<div class="col-md-12">-->
+<!--<div class="col-md-4"></div>-->
+<!--<div id="roct" class="col-md-4">-->
+<!--<img src="preps/Roct1/001.jpg">-->
+<!--</div>-->
+<!--<div class="col-md-4"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<canvas id="myworld" width="500" height="500"></canvas>
 
 <link rel="stylesheet" type="text/css" href="css/about_us.css">
-<script src="js/about_us.js"></script>
+
+
+<!--<script src="js/about_us.js"></script>-->
+<script src="js/box.js"></script>
 
 </body>
 </html>
