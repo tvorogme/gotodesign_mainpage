@@ -1,3 +1,1 @@
-### [GoTo main page](https://goto.msk.ru/)
-
-[video](https://tvorog.me/my.mp4)
+Merged into [gotosite](https://github.com/tvorogme/gotosite)
